@@ -1,0 +1,6 @@
+{
+  "name": "HyperOS Battery",
+  "description": "Real-time HyperOS battery monitor, charge limit alarm, automated performance profiles, and non-root Shizuku system optimizer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

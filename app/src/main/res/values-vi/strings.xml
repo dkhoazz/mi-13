@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HyperOS Pin &amp; Tối Ưu</string>
+
+    <!-- Navigation Tabs -->
+    <string name="tab_overview">Tổng quan</string>
+    <string name="tab_profiles">Profile</string>
+    <string name="tab_tweaks">Tối ưu</string>
+    <string name="tab_antikill">Chống Kill</string>
+
+    <!-- Language Selector -->
+    <string name="lang_switcher_cd">Đổi ngôn ngữ ứng dụng</string>
+    <string name="lang_dialog_title">Ngôn ngữ ứng dụng</string>
+    <string name="lang_system">Mặc định hệ thống</string>
+    <string name="lang_vi">Tiếng Việt</string>
+    <string name="lang_en">English</string>
+    <string name="lang_short_system">TỰ ĐỘNG</string>
+    <string name="lang_short_vi">VI</string>
+    <string name="lang_short_en">EN</string>
+
+    <!-- Refresh Rate & Profiles -->
+    <string name="rr_dynamic">Mặc định</string>
+    <string name="rr_60hz">60Hz</string>
+    <string name="rr_120hz">120Hz</string>
+
+    <string name="profile_gaming_title">Hiệu năng / Gaming</string>
+    <string name="profile_gaming_sub">120Hz, Speed Mode bật, hoạt ảnh 0.5x</string>
+    <string name="profile_balanced_title">Cân bằng hàng ngày</string>
+    <string name="profile_balanced_sub">Tần số quét động, hoạt ảnh 0.75x</string>
+    <string name="profile_saver_title">Tiết kiệm pin / Ngủ</string>
+    <string name="profile_saver_sub">60Hz, tối ưu pin qua đêm</string>
+    <string name="profile_cool_title">Sạc mát máy</string>
+    <string name="profile_cool_sub">60Hz, giảm tỏa nhiệt khi cắm sạc</string>
+
+    <!-- Telemetry & Charge Sources -->
+    <string name="charge_source_battery">Đang dùng pin</string>
+    <string name="charge_source_ac">Sạc nhanh AC</string>
+    <string name="charge_source_usb">Sạc USB</string>
+    <string name="charge_source_wireless">Sạc không dây</string>
+    <string name="charge_source_generic">Đang sạc</string>
+
+    <!-- Automation Trigger Reasons -->
+    <string name="trigger_default">Mặc định</string>
+    <string name="trigger_manual">Chọn thủ công</string>
+    <string name="trigger_thermal">Bảo vệ quá nhiệt (&gt;43°C)</string>
+    <string name="trigger_charging">Đang cắm sạc (Tự động làm mát)</string>
+    <string name="trigger_app">Ứng dụng ưu tiên: %1$s</string>
+    <string name="trigger_low_battery">Pin yếu (%1$d%% &lt;= %2$d%%)</string>
+    <string name="trigger_quiet_hours">Lịch ngủ / Giờ yên tĩnh</string>
+    <string name="trigger_user_default">Mặc định đã chọn</string>
+
+    <!-- Overview Screen -->
+    <string name="overview_title">Tổng quan Pin &amp; HyperOS</string>
+    <string name="overview_active_profile">Profile đang chạy: %1$s</string>
+    <string name="overview_triggered_by">Kích hoạt bởi: %1$s</string>
+    <string name="overview_alarm_ringing_fallback">Chuông báo pin đang kêu</string>
+    <string name="overview_snoozed_badge">Đã tạm hoãn chuông sạc (5 phút)</string>
+    <string name="btn_dismiss_alarm">Tắt chuông</string>
+    <string name="btn_snooze_alarm">Báo lại 5p</string>
+    <string name="stat_power">Công suất</string>
+    <string name="stat_current">Dòng điện</string>
+    <string name="stat_temp">Nhiệt độ</string>
+    <string name="stat_voltage">Điện áp</string>
+    <string name="upper_target_title">Ngưỡng báo đầy pin (Bảo vệ pin)</string>
+    <string name="upper_target_desc">Phát chuông &amp; rung liên tục khi sạc đạt mức này (khuyến nghị 80%).</string>
+    <string name="btn_test_alarm">Thử chuông báo</string>
+    <string name="low_alert_title">Cảnh báo pin yếu (%1$d%%)</string>
+    <string name="low_alert_desc">Thông báo nhắc cắm sạc khi pin xuống thấp.</string>
+
+    <!-- Profiles Screen -->
+    <string name="profiles_title">Profile Tự Động</string>
+    <string name="profiles_priority_hint">Ưu tiên: Nhiệt &gt;43°C &gt; Đang sạc &gt; Ứng dụng/Game &gt; Pin yếu &gt; Giờ ngủ &gt; Mặc định</string>
+    <string name="profiles_rules_section">Quy tắc chuyển Profile tự động</string>
+    <string name="rule_per_app_title">Tự bật Gaming theo ứng dụng</string>
+    <string name="rule_per_app_desc">Quét mỗi 2 giây khi bật màn hình; tự về mặc định khi thoát game.</string>
+    <string name="btn_select_apps">Chọn ứng dụng / Game (%1$d đã chọn)</string>
+    <string name="rule_charge_cool_title">Tự chuyển \'Sạc mát máy\' khi cắm sạc</string>
+    <string name="rule_charge_cool_desc">Hạ 60Hz và tắt Speed Mode giúp sạc mát và bền pin hơn.</string>
+    <string name="rule_low_batt_title">Tiết kiệm pin khi pin &lt;= %1$d%%</string>
+    <string name="rule_low_batt_desc">Tự động kích hoạt \'Tiết kiệm pin / Ngủ\' khi pin yếu.</string>
+    <string name="rule_quiet_hours_title">Lịch giờ ngủ (Tiết kiệm pin / Ngủ)</string>
+    <string name="rule_quiet_hours_desc">Tự động áp dụng khung giờ yên tĩnh qua đêm.</string>
+    <string name="btn_quiet_start">Bắt đầu: %1$s</string>
+    <string name="btn_quiet_end">Kết thúc: %1$s</string>
+    <string name="profile_speed_on">Bật</string>
+    <string name="profile_speed_off">Tắt</string>
+    <string name="profile_summary_fmt">%1$s • Speed: %2$s • Hoạt ảnh %3$sx</string>
+    <string name="profile_tag_phantom"> • Phantom Guard</string>
+    <string name="profile_tag_thermal"> • Mở khóa nhiệt</string>
+    <string name="profile_in_use">Đang dùng (%1$s)</string>
+    <string name="cd_edit_profile">Chỉnh sửa</string>
+    <string name="btn_apply_now">Áp dụng ngay</string>
+    <string name="dialog_edit_title">Chỉnh sửa: %1$s</string>
+    <string name="label_refresh_rate">Tần số quét màn hình</string>
+    <string name="label_anim_scale">Tỉ lệ hoạt ảnh</string>
+    <string name="label_speed_mode">Chế độ Hiệu năng (speed_mode)</string>
+    <string name="label_phantom_guard">Phantom Process Guard</string>
+    <string name="label_thermal_override">Mở khóa giới hạn nhiệt (&lt;43°C)</string>
+    <string name="btn_save">Lưu</string>
+    <string name="btn_cancel">Hủy</string>
+    <string name="btn_done">Xong</string>
+    <string name="btn_close">Đóng</string>
+    <string name="dialog_apps_title">Chọn Ứng dụng / Game (%1$d)</string>
+    <string name="hint_search_apps">Tìm tên ứng dụng hoặc gói...</string>
+    <string name="empty_apps_search">Không tìm thấy ứng dụng phù hợp</string>
+
+    <!-- Tweaks Screen -->
+    <string name="tweaks_title">Tối ưu HyperOS 3.0.309.0</string>
+    <string name="tweaks_subtitle">Tinh chỉnh hệ thống không cần Root qua Shizuku &amp; quyền bền vững.</string>
+    <string name="tweaks_perms_card_title">Trạng thái quyền hệ thống</string>
+    <string name="shizuku_ready">Shizuku: Sẵn sàng</string>
+    <string name="shizuku_connecting">Shizuku: Đang kết nối</string>
+    <string name="shizuku_no_perm">Shizuku: Chưa cấp quyền</string>
+    <string name="shizuku_not_running">Shizuku: Chưa chạy</string>
+    <string name="btn_request_shizuku">Yêu cầu quyền Shizuku</string>
+    <string name="btn_grant_via_shizuku">Cấp quyền tự động qua Shizuku</string>
+    <string name="grant_via_shizuku_desc">Lưu vĩnh viễn quyền chỉnh tần số quét, hoạt ảnh &amp; đọc ứng dụng ngay cả khi khởi động lại máy.</string>
+    <string name="tweak_rr_title">Kiểm soát tần số quét (PowerKeeper)</string>
+    <string name="tweak_rr_desc">Ghi đồng bộ user/min/peak/miui_refresh_rate để HyperOS 3 giữ đúng tần số quét.</string>
+    <string name="tweak_speed_title">Chế độ Hiệu năng (speed_mode)</string>
+    <string name="tweak_speed_desc">Ưu tiên xung nhịp CPU/GPU và giảm độ trễ cảm ứng khi chơi game.</string>
+    <string name="tweak_anim_title">Tốc độ hoạt ảnh hệ thống (%1$sx)</string>
+    <string name="tweak_phantom_title">Chống kill tiến trình ẩn (Phantom Guard)</string>
+    <string name="tweak_phantom_desc">Vô hiệu hóa giới hạn 32 tiến trình con trên Android 16 / HyperOS 3 qua Shizuku.</string>
+    <string name="tweak_thermal_title">Mở khóa giới hạn nhiệt (Thermal Override)</string>
+    <string name="tweak_thermal_desc">Giảm bóp xung khi chơi game nặng (yêu cầu Shizuku).</string>
+    <string name="tweak_thermal_warning">Cảnh báo an toàn: Tự động ngắt và chạy cmd thermalservice reset nếu pin vượt 43.0°C (Hiện tại: %1$.1f°C).</string>
+    <string name="btn_restore_defaults">Khôi phục mặc định</string>
+
+    <!-- Anti-Kill Guide Screen -->
+    <string name="antikill_title">Chống Kill Ngầm HyperOS 3</string>
+    <string name="antikill_subtitle">Đảm bảo chuông báo sạc 80% &amp; Profile tự động chạy ổn định 24/7.</string>
+    <string name="btn_recheck">Kiểm tra lại</string>
+    <string name="checklist_title">Danh sách quyền bắt buộc</string>
+    <string name="perm_notif_title">Hiển thị thông báo (POST_NOTIFICATIONS)</string>
+    <string name="perm_notif_desc">Bắt buộc để hiển thị chuông báo sạc 80% và cảnh báo quá nhiệt.</string>
+    <string name="perm_battery_title">Bỏ qua tối ưu hóa pin (Battery Optimization)</string>
+    <string name="perm_battery_desc">Cho phép dịch vụ theo dõi pin chạy nền liên tục không bị Doze cắt.</string>
+    <string name="perm_usage_title">Quyền truy cập sử dụng (Usage Stats)</string>
+    <string name="perm_usage_desc">Nhận diện game/ứng dụng đang mở để tự bật Profile Gaming.</string>
+    <string name="perm_write_settings_title">Quyền sửa cài đặt hệ thống (WRITE_SETTINGS)</string>
+    <string name="perm_write_settings_desc">Điều chỉnh tần số quét 60Hz/120Hz và Speed Mode.</string>
+    <string name="perm_shizuku_title">Quyền Shizuku</string>
+    <string name="perm_shizuku_desc">Dùng cho Phantom Process Guard, Thermalservice &amp; cấp quyền 1 chạm.</string>
+    <string name="btn_grant">Cấp quyền</string>
+    <string name="btn_open_settings">Mở cài đặt</string>
+    <string name="btn_open_shizuku">Mở Shizuku</string>
+    <string name="status_granted">Đã cấp</string>
+    <string name="guide_title">Hướng dẫn chống kill ngầm trên HyperOS 3.0.309.0</string>
+    <string name="guide_step1_title">Bước 1: Bật Tự khởi chạy (Autostart)</string>
+    <string name="guide_step1_desc">Vào Cài đặt → Ứng dụng → Quản lý ứng dụng → Tìm \'HyperOS Pin &amp; Tối Ưu\' → Bật \'Tự khởi chạy\' (hoặc Tự khởi chạy ngầm).</string>
+    <string name="guide_step2_title">Bước 2: Đặt Tiết kiệm pin → Không hạn chế</string>
+    <string name="guide_step2_desc">Trong cùng trang Thông tin ứng dụng → Chọn \'Tiết kiệm pin\' → Chọn \'Không hạn chế\' (No restrictions) để HyperOS PowerKeeper không đóng băng dịch vụ sạc.</string>
+    <string name="guide_step3_title">Bước 3: Khóa ứng dụng trong trình đa nhiệm</string>
+    <string name="guide_step3_desc">Mở trình đa nhiệm (vuốt lên giữ) → Nhấn giữ thẻ ứng dụng \'HyperOS Pin &amp; Tối Ưu\' → Nhấn biểu tượng Ổ khóa để giữ tiến trình khi nhấn nút X dọn RAM.</string>
+    <string name="guide_step4_title">Bước 4: Tắt Dọn dẹp bộ nhớ khi khóa thiết bị</string>
+    <string name="guide_step4_desc">Mở ứng dụng Bảo mật (Security) của Xiaomi → Biểu tượng Cài đặt (góc phải trên) → Tăng tốc độ → \'Dọn dẹp bộ nhớ khi khóa thiết bị\' → Chọn \'Không bao giờ\'.</string>
+    <string name="guide_step5_title">Bước 5: Kiểm tra lại thông báo trên thanh trạng thái</string>
+    <string name="guide_step5_desc">Luôn giữ thông báo nền đang hoạt động (hoặc tắt tiếng kênh thông báo \'Theo dõi Pin &amp; HyperOS\' thay vì tắt hẳn quyền thông báo).</string>
+    <string name="btn_open_app_info">Mở Thông tin ứng dụng để cài Bước 1 &amp; 2</string>
+
+    <!-- Notifications & Foreground Service -->
+    <string name="notif_channel_monitor_name">Theo dõi Pin &amp; HyperOS</string>
+    <string name="notif_channel_monitor_desc">Hiển thị thông số pin, công suất sạc và profile đang kích hoạt</string>
+    <string name="notif_channel_alarm_name">Chuông báo mức sạc 80% &amp; Pin yếu</string>
+    <string name="notif_channel_alarm_desc">Cảnh báo khi pin đạt ngưỡng sạc hoặc nhiệt độ cao</string>
+    <string name="notif_channel_thermal_name">Cảnh báo an toàn nhiệt độ</string>
+    <string name="notif_channel_thermal_desc">Cảnh báo khẩn cấp khi nhiệt độ pin vượt ngưỡng an toàn</string>
+    <string name="notif_monitor_title">%1$d%% • %2$s • %3$.1f°C</string>
+    <string name="notif_monitor_charging">Công suất %1$.1fW (%2$dmA) • Ngưỡng báo %3$d%% • %4$s</string>
+    <string name="notif_monitor_discharging">Điện áp %1$.2fV (%2$dmA) • Profile: %3$s</string>
+    <string name="notif_charge_alarm_title">Pin đã đạt %1$d%% (Ngưỡng %2$d%%)</string>
+    <string name="notif_charge_alarm_body">Hãy rút sạc để bảo vệ tuổi thọ pin HyperOS.</string>
+    <string name="notif_test_alarm_title">Thử chuông báo sạc pin</string>
+    <string name="notif_test_alarm_body">Chuông báo và rung đang hoạt động bình thường. Nhấn Tắt chuông để dừng.</string>
+    <string name="notif_low_batt_title">Cảnh báo pin yếu (%1$d%%)</string>
+    <string name="notif_low_batt_body">Pin đã giảm xuống mức %1$d%%. Hãy cắm sạc để tránh sập nguồn.</string>
+    <string name="notif_overheat_charge_title">Cảnh báo nóng máy khi sạc (%1$.1f°C)</string>
+    <string name="notif_overheat_charge_body">Nhiệt độ pin vượt 42°C khi sạc. Nên tháo ốp hoặc tạm dừng sạc nhanh.</string>
+    <string name="notif_thermal_cutoff_title">Quá nhiệt %1$.1f°C (&gt;43°C)</string>
+    <string name="notif_thermal_cutoff_body">Hệ thống đã tự động thực thi cmd thermalservice reset để bảo vệ phần cứng.</string>
+
+    <!-- Snackbar & Shell Messages -->
+    <string name="msg_shizuku_not_running">Shizuku chưa chạy. Hãy mở ứng dụng Shizuku và khởi động dịch vụ trước.</string>
+    <string name="msg_shizuku_grant_prompt">Vui lòng cấp quyền Shizuku trong hộp thoại hiện ra rồi thử lại.</string>
+    <string name="msg_perms_granted_ok">Đã cấp quyền WRITE_SECURE_SETTINGS, WRITE_SETTINGS &amp; USAGE_STATS thành công!</string>
+    <string name="msg_perms_granted_fail">Cấp quyền thất bại: %1$s</string>
+    <string name="msg_profile_applied">Đã áp dụng profile: %1$s</string>
+    <string name="msg_profile_saved">Đã cập nhật cấu hình %1$s</string>
+    <string name="msg_profile_partial_fail">Áp dụng profile chưa đầy đủ vì thiếu quyền hệ thống.</string>
+    <string name="msg_rr_ok">Đã chuyển tần số quét: %1$s</string>
+    <string name="msg_rr_fail">Thiếu quyền WRITE_SETTINGS hoặc Shizuku để chỉnh tần số quét.</string>
+    <string name="msg_speed_on">Đã bật Chế độ Hiệu năng (speed_mode)</string>
+    <string name="msg_speed_off">Đã tắt Chế độ Hiệu năng</string>
+    <string name="msg_speed_fail">Không thể ghi speed_mode. Hãy cấp quyền tự động qua Shizuku.</string>
+    <string name="msg_anim_ok">Đã đặt tỉ lệ hoạt ảnh %1$sx</string>
+    <string name="msg_anim_fail">Thiếu WRITE_SECURE_SETTINGS hoặc Shizuku để chỉnh hoạt ảnh.</string>
+    <string name="msg_phantom_on">Đã bật Chống kill tiến trình ẩn (Phantom Guard)</string>
+    <string name="msg_phantom_off">Đã khôi phục mặc định Phantom Process</string>
+    <string name="msg_phantom_fail">Cần Shizuku hoạt động để chỉnh Phantom Process Guard: %1$s</string>
+    <string name="msg_thermal_blocked">Nhiệt độ hiện tại %1$.1f°C vượt ngưỡng an toàn 43°C. Đã từ chối mở khóa tản nhiệt.</string>
+    <string name="msg_thermal_on">Đã bật Mở khóa giới hạn nhiệt (ngắt tự động &gt;43°C)</string>
+    <string name="msg_thermal_off">Đã khôi phục kiểm soát nhiệt độ gốc</string>
+    <string name="msg_thermal_fail">Cần Shizuku để điều khiển thermalservice: %1$s</string>
+    <string name="msg_restore_ok">Đã khôi phục toàn bộ thông số về mặc định gốc của HyperOS.</string>
+    <string name="msg_shizuku_not_ready">Shizuku chưa sẵn sàng hoặc chưa được cấp quyền.</string>
+    <string name="msg_shell_empty">Lệnh trống</string>
+    <string name="msg_shell_no_reply">Không có phản hồi</string>
+    <string name="msg_shell_service_error">Lỗi gọi Shizuku UserService</string>
+</resources>

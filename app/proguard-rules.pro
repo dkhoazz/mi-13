@@ -1,0 +1,4 @@
+-keep class com.example.IShellService { *; }
+-keep class com.example.IShellService$Stub { *; }
+-keep class com.example.shizuku.ShellUserService { *; }
+-keepattributes *Annotation*

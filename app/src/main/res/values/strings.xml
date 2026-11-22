@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HyperOS Battery</string>
+
+    <!-- Navigation Tabs -->
+    <string name="tab_overview">Overview</string>
+    <string name="tab_profiles">Profiles</string>
+    <string name="tab_tweaks">Tweaks</string>
+    <string name="tab_antikill">Anti-Kill</string>
+
+    <!-- Language Selector -->
+    <string name="lang_switcher_cd">Switch app language</string>
+    <string name="lang_dialog_title">App Language</string>
+    <string name="lang_system">System Default</string>
+    <string name="lang_vi">Tiếng Việt</string>
+    <string name="lang_en">English</string>
+    <string name="lang_short_system">AUTO</string>
+    <string name="lang_short_vi">VI</string>
+    <string name="lang_short_en">EN</string>
+
+    <!-- Refresh Rate & Profiles -->
+    <string name="rr_dynamic">Default</string>
+    <string name="rr_60hz">60Hz</string>
+    <string name="rr_120hz">120Hz</string>
+
+    <string name="profile_gaming_title">Performance / Gaming</string>
+    <string name="profile_gaming_sub">120Hz, Speed Mode on, 0.5x animations</string>
+    <string name="profile_balanced_title">Daily Balanced</string>
+    <string name="profile_balanced_sub">Dynamic refresh rate, 0.75x animations</string>
+    <string name="profile_saver_title">Battery Saver / Sleep</string>
+    <string name="profile_saver_sub">60Hz, overnight battery optimization</string>
+    <string name="profile_cool_title">Cool Charging</string>
+    <string name="profile_cool_sub">60Hz, minimize heat while plugged in</string>
+
+    <!-- Telemetry & Charge Sources -->
+    <string name="charge_source_battery">On Battery</string>
+    <string name="charge_source_ac">AC Fast Charge</string>
+    <string name="charge_source_usb">USB Charging</string>
+    <string name="charge_source_wireless">Wireless Charging</string>
+    <string name="charge_source_generic">Charging</string>
+
+    <!-- Automation Trigger Reasons -->
+    <string name="trigger_default">Default</string>
+    <string name="trigger_manual">Manual Selection</string>
+    <string name="trigger_thermal">Thermal Protection (&gt;43°C)</string>
+    <string name="trigger_charging">Plugged In (Auto Cooling)</string>
+    <string name="trigger_app">Priority App: %1$s</string>
+    <string name="trigger_low_battery">Low Battery (%1$d%% &lt;= %2$d%%)</string>
+    <string name="trigger_quiet_hours">Sleep Schedule / Quiet Hours</string>
+    <string name="trigger_user_default">User Default</string>
+
+    <!-- Overview Screen -->
+    <string name="overview_title">Battery &amp; HyperOS</string>
+    <string name="overview_active_profile">Active Profile: %1$s</string>
+    <string name="overview_triggered_by">Triggered by: %1$s</string>
+    <string name="overview_alarm_ringing_fallback">Battery alarm is ringing</string>
+    <string name="overview_snoozed_badge">Charge alarm snoozed (5 min)</string>
+    <string name="btn_dismiss_alarm">Dismiss</string>
+    <string name="btn_snooze_alarm">Snooze 5m</string>
+    <string name="stat_power">Power</string>
+    <string name="stat_current">Current</string>
+    <string name="stat_temp">Temperature</string>
+    <string name="stat_voltage">Voltage</string>
+    <string name="upper_target_title">Charge Limit Alarm</string>
+    <string name="upper_target_desc">Ring alarm &amp; vibrate continuously when battery reaches this threshold (80% recommended).</string>
+    <string name="btn_test_alarm">Test Charge Alarm</string>
+    <string name="low_alert_title">Low Battery Alert (%1$d%%)</string>
+    <string name="low_alert_desc">Notify to plug in charger when battery drops below this threshold.</string>
+
+    <!-- Profiles Screen -->
+    <string name="profiles_title">Automated Profiles</string>
+    <string name="profiles_priority_hint">Priority: Thermal &gt;43°C &gt; Charging &gt; App/Game &gt; Low Batt &gt; Sleep &gt; Default</string>
+    <string name="profiles_rules_section">Automation Rules</string>
+    <string name="rule_per_app_title">Auto Gaming Profile per App</string>
+    <string name="rule_per_app_desc">Polls every 2s while screen is on; reverts to default upon exit.</string>
+    <string name="btn_select_apps">Select Apps / Games (%1$d selected)</string>
+    <string name="rule_charge_cool_title">Auto Cool Charging on Plug-In</string>
+    <string name="rule_charge_cool_desc">Drops to 60Hz &amp; disables Speed Mode for cooler charging.</string>
+    <string name="rule_low_batt_title">Battery Saver at &lt;= %1$d%%</string>
+    <string name="rule_low_batt_desc">Automatically activates Battery Saver / Sleep when battery runs low.</string>
+    <string name="rule_quiet_hours_title">Sleep Schedule (Battery Saver)</string>
+    <string name="rule_quiet_hours_desc">Automatically applies overnight quiet hours profile.</string>
+    <string name="btn_quiet_start">Start: %1$s</string>
+    <string name="btn_quiet_end">End: %1$s</string>
+    <string name="profile_speed_on">On</string>
+    <string name="profile_speed_off">Off</string>
+    <string name="profile_summary_fmt">%1$s • Speed: %2$s • Anim %3$sx</string>
+    <string name="profile_tag_phantom"> • Phantom Guard</string>
+    <string name="profile_tag_thermal"> • Thermal Unlock</string>
+    <string name="profile_in_use">Active (%1$s)</string>
+    <string name="cd_edit_profile">Edit profile</string>
+    <string name="btn_apply_now">Apply Now</string>
+    <string name="dialog_edit_title">Edit: %1$s</string>
+    <string name="label_refresh_rate">Screen Refresh Rate</string>
+    <string name="label_anim_scale">Animation Scale</string>
+    <string name="label_speed_mode">Performance Mode (speed_mode)</string>
+    <string name="label_phantom_guard">Phantom Process Guard</string>
+    <string name="label_thermal_override">Thermal Limit Override (&lt;43°C)</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_done">Done</string>
+    <string name="btn_close">Close</string>
+    <string name="dialog_apps_title">Select Apps / Games (%1$d)</string>
+    <string name="hint_search_apps">Search app name or package...</string>
+    <string name="empty_apps_search">No matching apps found</string>
+
+    <!-- Tweaks Screen -->
+    <string name="tweaks_title">HyperOS 3.0.309.0 Tweaks</string>
+    <string name="tweaks_subtitle">Rootless system tuning via Shizuku &amp; persistent permissions.</string>
+    <string name="tweaks_perms_card_title">System Permission Status</string>
+    <string name="shizuku_ready">Shizuku: Ready</string>
+    <string name="shizuku_connecting">Shizuku: Connecting</string>
+    <string name="shizuku_no_perm">Shizuku: No Permission</string>
+    <string name="shizuku_not_running">Shizuku: Not Running</string>
+    <string name="btn_request_shizuku">Request Shizuku Permission</string>
+    <string name="btn_grant_via_shizuku">Auto-Grant Permissions via Shizuku</string>
+    <string name="grant_via_shizuku_desc">Persistently grants refresh rate, animation &amp; usage stats permissions across reboots.</string>
+    <string name="tweak_rr_title">Refresh Rate Control (PowerKeeper)</string>
+    <string name="tweak_rr_desc">Syncs user/min/peak/miui_refresh_rate to lock refresh rate on HyperOS 3.</string>
+    <string name="tweak_speed_title">Performance Mode (speed_mode)</string>
+    <string name="tweak_speed_desc">Prioritizes CPU/GPU clocks and lowers touch latency during gaming.</string>
+    <string name="tweak_anim_title">System Animation Speed (%1$sx)</string>
+    <string name="tweak_phantom_title">Phantom Process Killer Guard</string>
+    <string name="tweak_phantom_desc">Disables the 32 child-process limit on Android 16 / HyperOS 3 via Shizuku.</string>
+    <string name="tweak_thermal_title">Thermal Limit Override</string>
+    <string name="tweak_thermal_desc">Reduces thermal throttling during heavy gaming (requires Shizuku).</string>
+    <string name="tweak_thermal_warning">Safety Cutoff: Automatically resets via cmd thermalservice reset if battery exceeds 43.0°C (Current: %1$.1f°C).</string>
+    <string name="btn_restore_defaults">Restore Stock Defaults</string>
+
+    <!-- Anti-Kill Guide Screen -->
+    <string name="antikill_title">HyperOS 3 Anti-Kill Guide</string>
+    <string name="antikill_subtitle">Keep 80% charge alarms &amp; automated profiles running reliably 24/7.</string>
+    <string name="btn_recheck">Recheck</string>
+    <string name="checklist_title">Required Permissions Checklist</string>
+    <string name="perm_notif_title">Notifications (POST_NOTIFICATIONS)</string>
+    <string name="perm_notif_desc">Required to sound 80% charge alarms and overheat warnings.</string>
+    <string name="perm_battery_title">Ignore Battery Optimizations</string>
+    <string name="perm_battery_desc">Allows the battery monitor service to stay alive without Doze restrictions.</string>
+    <string name="perm_usage_title">Usage Access (PACKAGE_USAGE_STATS)</string>
+    <string name="perm_usage_desc">Detects foreground games/apps to trigger Gaming Profile automatically.</string>
+    <string name="perm_write_settings_title">Modify System Settings (WRITE_SETTINGS)</string>
+    <string name="perm_write_settings_desc">Controls 60Hz/120Hz refresh rate and HyperOS Speed Mode.</string>
+    <string name="perm_shizuku_title">Shizuku Service</string>
+    <string name="perm_shizuku_desc">Used for Phantom Process Guard, Thermalservice &amp; 1-tap permission grant.</string>
+    <string name="btn_grant">Grant</string>
+    <string name="btn_open_settings">Open Settings</string>
+    <string name="btn_open_shizuku">Open Shizuku</string>
+    <string name="status_granted">Granted</string>
+    <string name="guide_title">HyperOS 3.0.309.0 Anti-Kill Steps</string>
+    <string name="guide_step1_title">Step 1: Enable Autostart</string>
+    <string name="guide_step1_desc">Go to Settings → Apps → Manage apps → HyperOS Battery → Enable Autostart (or Background autostart).</string>
+    <string name="guide_step2_title">Step 2: Set Battery Saver to No Restrictions</string>
+    <string name="guide_step2_desc">In App Info → Battery saver → Select \'No restrictions\' so HyperOS PowerKeeper never freezes charging monitoring.</string>
+    <string name="guide_step3_title">Step 3: Lock App in Recents</string>
+    <string name="guide_step3_desc">Open Recents (swipe up &amp; hold) → Long-press this app card → Tap the Padlock icon to protect it from RAM cleanup.</string>
+    <string name="guide_step4_title">Step 4: Disable Clear Cache When Locked</string>
+    <string name="guide_step4_desc">Open Xiaomi Security app → Settings (top right) → Boost speed → \'Clear cache when device is locked\' → Never.</string>
+    <string name="guide_step5_title">Step 5: Keep Monitor Notification Active</string>
+    <string name="guide_step5_desc">Keep the ongoing monitor notification active (mute the \'Battery &amp; HyperOS Monitor\' channel instead of revoking notification permission).</string>
+    <string name="btn_open_app_info">Open App Info for Steps 1 &amp; 2</string>
+
+    <!-- Notifications & Foreground Service -->
+    <string name="notif_channel_monitor_name">Battery &amp; HyperOS Monitor</string>
+    <string name="notif_channel_monitor_desc">Displays live battery telemetry, charging wattage, and active profile</string>
+    <string name="notif_channel_alarm_name">80% Charge &amp; Low Battery Alarms</string>
+    <string name="notif_channel_alarm_desc">High-priority alarm when battery reaches charge target or runs low</string>
+    <string name="notif_channel_thermal_name">Thermal Safety Alerts</string>
+    <string name="notif_channel_thermal_desc">Emergency alerts when battery temperature exceeds safe limits</string>
+    <string name="notif_monitor_title">%1$d%% • %2$s • %3$.1f°C</string>
+    <string name="notif_monitor_charging">%1$.1fW (%2$dmA) • Target %3$d%% • %4$s</string>
+    <string name="notif_monitor_discharging">%1$.2fV (%2$dmA) • Profile: %3$s</string>
+    <string name="notif_charge_alarm_title">Battery reached %1$d%% (Target %2$d%%)</string>
+    <string name="notif_charge_alarm_body">Unplug your charger to preserve HyperOS battery longevity.</string>
+    <string name="notif_test_alarm_title">Test Battery Charge Alarm</string>
+    <string name="notif_test_alarm_body">Alarm sound and vibration are working normally. Tap Dismiss to stop.</string>
+    <string name="notif_low_batt_title">Low Battery Alert (%1$d%%)</string>
+    <string name="notif_low_batt_body">Battery dropped to %1$d%%. Plug in your charger to prevent shutdown.</string>
+    <string name="notif_overheat_charge_title">Charging Overheat Warning (%1$.1f°C)</string>
+    <string name="notif_overheat_charge_body">Battery temperature exceeded 42°C while charging. Remove case or pause fast charging.</string>
+    <string name="notif_thermal_cutoff_title">Overheat %1$.1f°C (&gt;43°C)</string>
+    <string name="notif_thermal_cutoff_body">Automatically executed cmd thermalservice reset to protect hardware.</string>
+
+    <!-- Snackbar & Shell Messages -->
+    <string name="msg_shizuku_not_running">Shizuku is not running. Please open Shizuku and start the service first.</string>
+    <string name="msg_shizuku_grant_prompt">Please approve Shizuku permission in the dialog and try again.</string>
+    <string name="msg_perms_granted_ok">Granted WRITE_SECURE_SETTINGS, WRITE_SETTINGS &amp; USAGE_STATS successfully!</string>
+    <string name="msg_perms_granted_fail">Permission grant failed: %1$s</string>
+    <string name="msg_profile_applied">Applied profile: %1$s</string>
+    <string name="msg_profile_saved">Updated configuration for %1$s</string>
+    <string name="msg_profile_partial_fail">Profile partially applied due to missing system permissions.</string>
+    <string name="msg_rr_ok">Refresh rate switched to: %1$s</string>
+    <string name="msg_rr_fail">Missing WRITE_SETTINGS or Shizuku permission to adjust refresh rate.</string>
+    <string name="msg_speed_on">Performance Mode (speed_mode) enabled</string>
+    <string name="msg_speed_off">Performance Mode disabled</string>
+    <string name="msg_speed_fail">Cannot write speed_mode. Grant permissions via Shizuku first.</string>
+    <string name="msg_anim_ok">Animation scale set to %1$sx</string>
+    <string name="msg_anim_fail">Missing WRITE_SECURE_SETTINGS or Shizuku permission to change animations.</string>
+    <string name="msg_phantom_on">Phantom Process Guard enabled</string>
+    <string name="msg_phantom_off">Restored default Phantom Process settings</string>
+    <string name="msg_phantom_fail">Active Shizuku required for Phantom Process Guard: %1$s</string>
+    <string name="msg_thermal_blocked">Current temp %1$.1f°C exceeds 43°C safety limit. Thermal override blocked.</string>
+    <string name="msg_thermal_on">Thermal Limit Override enabled (auto-cutoff &gt;43°C)</string>
+    <string name="msg_thermal_off">Restored stock thermal throttling</string>
+    <string name="msg_thermal_fail">Shizuku required to control thermalservice: %1$s</string>
+    <string name="msg_restore_ok">All parameters restored to HyperOS stock defaults.</string>
+    <string name="msg_shizuku_not_ready">Shizuku is not ready or permission not granted.</string>
+    <string name="msg_shell_empty">Empty command</string>
+    <string name="msg_shell_no_reply">No response</string>
+    <string name="msg_shell_service_error">Error calling Shizuku UserService</string>
+</resources>
