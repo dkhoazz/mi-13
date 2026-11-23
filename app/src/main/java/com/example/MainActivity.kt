@@ -128,9 +128,13 @@ private fun HyperOptimizerApp(
     val telemetry by vm.batteryTelemetry.collectAsStateWithLifecycle()
     val automationStatus by vm.automationStatus.collectAsStateWithLifecycle()
     val shizukuStatus by vm.shizukuStatus.collectAsStateWithLifecycle()
+    val commandLogs by vm.commandLogs.collectAsStateWithLifecycle()
     val permissions by vm.permissions.collectAsStateWithLifecycle()
     val installedApps by vm.installedApps.collectAsStateWithLifecycle()
     val appsLoading by vm.appsLoading.collectAsStateWithLifecycle()
+    val debloatStates by vm.debloatStates.collectAsStateWithLifecycle()
+    val debloatLoading by vm.debloatLoading.collectAsStateWithLifecycle()
+    val artProgress by vm.artProgress.collectAsStateWithLifecycle()
 
     val localizedContext = remember(baseContext, prefs.appLanguage) {
         LocaleHelper.localizedContext(baseContext, prefs.appLanguage)
@@ -282,15 +286,37 @@ private fun HyperOptimizerApp(
                                     shizukuStatus = shizukuStatus,
                                     permissions = permissions,
                                     currentTempC = telemetry.temperatureC,
+                                    debloatStates = debloatStates,
+                                    debloatLoading = debloatLoading,
+                                    installedApps = installedApps,
+                                    appsLoading = appsLoading,
+                                    artProgress = artProgress,
                                     onLanguageSelected = vm::setAppLanguage,
                                     onRequestShizuku = vm::requestShizukuPermission,
                                     onGrantPersistentPermissions = vm::grantSelfPermissionsViaShizuku,
                                     onRefreshRateChange = vm::setRefreshRate,
                                     onSpeedModeChange = vm::setSpeedMode,
+                                    onMiuiHomeAnimRateChange = vm::setMiuiHomeAnimRate,
                                     onAnimationScaleChange = vm::setAnimationScale,
+                                    onGameDriverChange = vm::setGameDriverEnabled,
                                     onPhantomGuardChange = vm::setPhantomGuard,
                                     onThermalOverrideChange = vm::setThermalOverride,
-                                    onRestoreDefaults = vm::restoreStockDefaults
+                                    onRestoreDefaults = vm::restoreStockDefaults,
+                                    onRefreshDebloat = vm::refreshDebloatStates,
+                                    onFreezeSafePack = vm::freezeSafePack,
+                                    onRestoreAllAppFrozen = vm::restoreAllAppFrozen,
+                                    onToggleDebloatPackage = vm::toggleDebloatPackage,
+                                    onLoadInstalledApps = vm::loadInstalledAppsIfNeeded,
+                                    onTrimCaches = vm::trimSystemCaches,
+                                    onRunBgDexopt = vm::runBgDexoptJob,
+                                    onCompileAllApps = vm::compileAllUserApps,
+                                    onCompileSingleApp = vm::compileSingleApp,
+                                    onCancelArtCompile = vm::cancelArtCompilation,
+                                    onCachedFreezerChange = vm::setCachedAppFreezer,
+                                    onPrivateDnsChange = vm::setPrivateDns,
+                                    onWifiScanDisabledChange = vm::setWifiScanDisabled,
+                                    onBleScanDisabledChange = vm::setBleScanDisabled,
+                                    onToggleBgRestrict = vm::toggleAppBackgroundRestriction
                                 )
                             }
 
@@ -299,6 +325,7 @@ private fun HyperOptimizerApp(
                                     currentLanguage = prefs.appLanguage,
                                     permissions = permissions,
                                     shizukuStatus = shizukuStatus,
+                                    commandLogs = commandLogs,
                                     onLanguageSelected = vm::setAppLanguage,
                                     onRequestPostNotifications = {
                                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -306,7 +333,8 @@ private fun HyperOptimizerApp(
                                         }
                                     },
                                     onRequestShizuku = vm::requestShizukuPermission,
-                                    onRefreshStatus = vm::refreshPermissionsAndShizuku
+                                    onRefreshStatus = vm::refreshPermissionsAndShizuku,
+                                    onClearCommandLogs = vm::clearCommandLogs
                                 )
                             }
                         }

@@ -15,11 +15,14 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.CheckCircle
+import androidx.compose.material.icons.rounded.DeleteSweep
 import androidx.compose.material.icons.rounded.OpenInNew
 import androidx.compose.material.icons.rounded.Shield
+import androidx.compose.material.icons.rounded.Terminal
 import androidx.compose.material.icons.rounded.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -28,7 +31,9 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,20 +45,25 @@ import androidx.compose.ui.unit.dp
 import com.example.R
 import com.example.data.AppLanguage
 import com.example.data.PermissionStatusSnapshot
+import com.example.data.ShellLogEntry
 import com.example.shizuku.ShizukuStatus
 import com.example.ui.components.LanguageSwitcherButton
 import com.example.ui.theme.HyperAmber
 import com.example.ui.theme.HyperGreenBright
+import com.example.ui.theme.HyperRed
+import com.example.ui.theme.JetBrainsMonoFamily
 
 @Composable
 fun AntiKillGuideScreen(
     currentLanguage: AppLanguage,
     permissions: PermissionStatusSnapshot,
     shizukuStatus: ShizukuStatus,
+    commandLogs: List<ShellLogEntry>,
     onLanguageSelected: (AppLanguage) -> Unit,
     onRequestPostNotifications: () -> Unit,
     onRequestShizuku: () -> Unit,
     onRefreshStatus: () -> Unit,
+    onClearCommandLogs: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -261,6 +271,116 @@ fun AntiKillGuideScreen(
                         Icon(Icons.Rounded.OpenInNew, contentDescription = null)
                         Spacer(Modifier.width(8.dp))
                         Text(stringResource(R.string.btn_open_app_info))
+                    }
+                }
+            }
+        }
+
+        // Shizuku Command Console
+        item {
+            Card(
+                shape = RoundedCornerShape(20.dp),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Icon(
+                                Icons.Rounded.Terminal,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.secondary
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text(
+                                text = stringResource(R.string.console_title),
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                        if (commandLogs.isNotEmpty()) {
+                            TextButton(
+                                onClick = onClearCommandLogs,
+                                modifier = Modifier.testTag("clear_console_button")
+                            ) {
+                                Icon(Icons.Rounded.DeleteSweep, contentDescription = null)
+                                Spacer(Modifier.width(4.dp))
+                                Text(stringResource(R.string.btn_clear_console))
+                            }
+                        }
+                    }
+
+                    if (commandLogs.isEmpty()) {
+                        Text(
+                            text = stringResource(R.string.console_empty),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+        }
+
+        items(commandLogs, key = { it.id }) { log ->
+            val ok = log.exitCode == 0
+            Surface(
+                shape = RoundedCornerShape(14.dp),
+                color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.55f),
+                border = BorderStroke(
+                    1.dp,
+                    if (ok) HyperGreenBright.copy(alpha = 0.35f) else HyperRed.copy(alpha = 0.45f)
+                )
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(12.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = log.timestamp,
+                            style = MaterialTheme.typography.labelSmall,
+                            fontFamily = JetBrainsMonoFamily,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Text(
+                            text = "EXIT ${log.exitCode}",
+                            style = MaterialTheme.typography.labelSmall,
+                            fontFamily = JetBrainsMonoFamily,
+                            fontWeight = FontWeight.Bold,
+                            color = if (ok) HyperGreenBright else HyperRed
+                        )
+                    }
+                    Text(
+                        text = "$ ${log.command}",
+                        style = MaterialTheme.typography.labelMedium,
+                        fontFamily = JetBrainsMonoFamily,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    if (log.output.isNotBlank()) {
+                        Text(
+                            text = log.output,
+                            style = MaterialTheme.typography.labelSmall,
+                            fontFamily = JetBrainsMonoFamily,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
                     }
                 }
             }

@@ -42,6 +42,14 @@ class SettingsRepository(private val context: Context) {
         private val KEY_CURRENT_REFRESH_RATE = stringPreferencesKey("current_refresh_rate")
         private val KEY_CURRENT_SPEED_MODE = booleanPreferencesKey("current_speed_mode")
         private val KEY_CURRENT_ANIM_SCALE = floatPreferencesKey("current_anim_scale")
+        private val KEY_MIUI_HOME_ANIM_RATE = stringPreferencesKey("miui_home_anim_rate")
+        private val KEY_GAME_DRIVER_ENABLED = booleanPreferencesKey("game_driver_enabled")
+        private val KEY_CACHED_FREEZER_ENABLED = booleanPreferencesKey("cached_freezer_enabled")
+        private val KEY_PRIVATE_DNS_PRESET = stringPreferencesKey("private_dns_preset")
+        private val KEY_WIFI_SCAN_DISABLED = booleanPreferencesKey("wifi_scan_disabled")
+        private val KEY_BLE_SCAN_DISABLED = booleanPreferencesKey("ble_scan_disabled")
+        private val KEY_FROZEN_BY_APP_PACKAGES = stringSetPreferencesKey("frozen_by_app_packages")
+        private val KEY_RESTRICTED_BG_PACKAGES = stringSetPreferencesKey("restricted_bg_packages")
 
         private val KEY_SNAP_CAPTURED = booleanPreferencesKey("snap_captured")
         private val KEY_SNAP_USER_RR = stringPreferencesKey("snap_user_rr")
@@ -52,6 +60,13 @@ class SettingsRepository(private val context: Context) {
         private val KEY_SNAP_WIN_ANIM = stringPreferencesKey("snap_win_anim")
         private val KEY_SNAP_TRANS_ANIM = stringPreferencesKey("snap_trans_anim")
         private val KEY_SNAP_ANIMATOR_DUR = stringPreferencesKey("snap_animator_dur")
+        private val KEY_SNAP_HOME_ANIM_RATE = stringPreferencesKey("snap_home_anim_rate")
+        private val KEY_SNAP_GAME_DRIVER = stringPreferencesKey("snap_game_driver")
+        private val KEY_SNAP_DNS_MODE = stringPreferencesKey("snap_dns_mode")
+        private val KEY_SNAP_DNS_SPEC = stringPreferencesKey("snap_dns_spec")
+        private val KEY_SNAP_WIFI_SCAN = stringPreferencesKey("snap_wifi_scan")
+        private val KEY_SNAP_BLE_SCAN = stringPreferencesKey("snap_ble_scan")
+        private val KEY_SNAP_FREEZER = stringPreferencesKey("snap_freezer")
     }
 
     private fun profileRefreshKey(id: ProfileId) = stringPreferencesKey("prof_${id.name}_rr")
@@ -59,6 +74,8 @@ class SettingsRepository(private val context: Context) {
     private fun profileAnimKey(id: ProfileId) = floatPreferencesKey("prof_${id.name}_anim")
     private fun profilePhantomKey(id: ProfileId) = booleanPreferencesKey("prof_${id.name}_phantom")
     private fun profileThermalKey(id: ProfileId) = booleanPreferencesKey("prof_${id.name}_thermal")
+    private fun profileGameDriverKey(id: ProfileId) = booleanPreferencesKey("prof_${id.name}_gamedriver")
+    private fun profileFreezerKey(id: ProfileId) = booleanPreferencesKey("prof_${id.name}_freezer")
     private fun profileNameKey(id: ProfileId) = stringPreferencesKey("prof_${id.name}_custom_name")
 
     val preferencesFlow: Flow<AppPreferencesState> = context.dataStore.data.map { prefs ->
@@ -75,7 +92,9 @@ class SettingsRepository(private val context: Context) {
                 speedMode = prefs[profileSpeedKey(id)] ?: def.speedMode,
                 animationScale = prefs[profileAnimKey(id)] ?: def.animationScale,
                 phantomGuard = prefs[profilePhantomKey(id)] ?: def.phantomGuard,
-                thermalOverride = prefs[profileThermalKey(id)] ?: def.thermalOverride
+                thermalOverride = prefs[profileThermalKey(id)] ?: def.thermalOverride,
+                gameDriverOptIn = prefs[profileGameDriverKey(id)] ?: def.gameDriverOptIn,
+                cachedFreezer = prefs[profileFreezerKey(id)] ?: def.cachedFreezer
             )
         }
 
@@ -94,6 +113,14 @@ class SettingsRepository(private val context: Context) {
         val language = prefs[KEY_APP_LANGUAGE]?.let {
             runCatching { AppLanguage.valueOf(it) }.getOrNull()
         } ?: AppLanguage.SYSTEM
+
+        val homeAnimRate = prefs[KEY_MIUI_HOME_ANIM_RATE]?.let {
+            runCatching { HyperAnimRate.valueOf(it) }.getOrNull()
+        } ?: HyperAnimRate.BALANCED
+
+        val dnsPreset = prefs[KEY_PRIVATE_DNS_PRESET]?.let {
+            runCatching { PrivateDnsPreset.valueOf(it) }.getOrNull()
+        } ?: PrivateDnsPreset.OFF
 
         AppPreferencesState(
             appLanguage = language,
@@ -115,6 +142,14 @@ class SettingsRepository(private val context: Context) {
             currentRefreshRate = currentRr,
             currentSpeedMode = prefs[KEY_CURRENT_SPEED_MODE] ?: false,
             currentAnimationScale = prefs[KEY_CURRENT_ANIM_SCALE] ?: 1.0f,
+            miuiHomeAnimRate = homeAnimRate,
+            gameDriverEnabled = prefs[KEY_GAME_DRIVER_ENABLED] ?: false,
+            cachedFreezerEnabled = prefs[KEY_CACHED_FREEZER_ENABLED] ?: false,
+            privateDnsPreset = dnsPreset,
+            wifiScanDisabled = prefs[KEY_WIFI_SCAN_DISABLED] ?: false,
+            bleScanDisabled = prefs[KEY_BLE_SCAN_DISABLED] ?: false,
+            frozenByAppPackages = prefs[KEY_FROZEN_BY_APP_PACKAGES] ?: emptySet(),
+            restrictedBgPackages = prefs[KEY_RESTRICTED_BG_PACKAGES] ?: emptySet(),
             profiles = profiles
         )
     }
@@ -134,7 +169,14 @@ class SettingsRepository(private val context: Context) {
             speedMode = prefs[KEY_SNAP_SPEED_MODE],
             windowAnimationScale = prefs[KEY_SNAP_WIN_ANIM],
             transitionAnimationScale = prefs[KEY_SNAP_TRANS_ANIM],
-            animatorDurationScale = prefs[KEY_SNAP_ANIMATOR_DUR]
+            animatorDurationScale = prefs[KEY_SNAP_ANIMATOR_DUR],
+            miuiHomeAnimRate = prefs[KEY_SNAP_HOME_ANIM_RATE],
+            gameDriverApps = prefs[KEY_SNAP_GAME_DRIVER],
+            privateDnsMode = prefs[KEY_SNAP_DNS_MODE],
+            privateDnsSpecifier = prefs[KEY_SNAP_DNS_SPEC],
+            wifiScanAlwaysEnabled = prefs[KEY_SNAP_WIFI_SCAN],
+            bleScanAlwaysEnabled = prefs[KEY_SNAP_BLE_SCAN],
+            cachedAppFreezer = prefs[KEY_SNAP_FREEZER]
         )
     }
 
@@ -149,6 +191,13 @@ class SettingsRepository(private val context: Context) {
             prefs[KEY_SNAP_WIN_ANIM] = snapshot.windowAnimationScale ?: UNSET_SENTINEL
             prefs[KEY_SNAP_TRANS_ANIM] = snapshot.transitionAnimationScale ?: UNSET_SENTINEL
             prefs[KEY_SNAP_ANIMATOR_DUR] = snapshot.animatorDurationScale ?: UNSET_SENTINEL
+            prefs[KEY_SNAP_HOME_ANIM_RATE] = snapshot.miuiHomeAnimRate ?: UNSET_SENTINEL
+            prefs[KEY_SNAP_GAME_DRIVER] = snapshot.gameDriverApps ?: UNSET_SENTINEL
+            prefs[KEY_SNAP_DNS_MODE] = snapshot.privateDnsMode ?: UNSET_SENTINEL
+            prefs[KEY_SNAP_DNS_SPEC] = snapshot.privateDnsSpecifier ?: UNSET_SENTINEL
+            prefs[KEY_SNAP_WIFI_SCAN] = snapshot.wifiScanAlwaysEnabled ?: UNSET_SENTINEL
+            prefs[KEY_SNAP_BLE_SCAN] = snapshot.bleScanAlwaysEnabled ?: UNSET_SENTINEL
+            prefs[KEY_SNAP_FREEZER] = snapshot.cachedAppFreezer ?: UNSET_SENTINEL
         }
     }
 
@@ -184,6 +233,8 @@ class SettingsRepository(private val context: Context) {
             it[profileAnimKey(config.id)] = config.animationScale
             it[profilePhantomKey(config.id)] = config.phantomGuard
             it[profileThermalKey(config.id)] = config.thermalOverride
+            it[profileGameDriverKey(config.id)] = config.gameDriverOptIn
+            it[profileFreezerKey(config.id)] = config.cachedFreezer
         }
     }
 
@@ -219,7 +270,13 @@ class SettingsRepository(private val context: Context) {
         speedMode: Boolean? = null,
         animationScale: Float? = null,
         phantomGuard: Boolean? = null,
-        thermalOverride: Boolean? = null
+        thermalOverride: Boolean? = null,
+        miuiHomeAnimRate: HyperAnimRate? = null,
+        gameDriverEnabled: Boolean? = null,
+        cachedFreezerEnabled: Boolean? = null,
+        privateDnsPreset: PrivateDnsPreset? = null,
+        wifiScanDisabled: Boolean? = null,
+        bleScanDisabled: Boolean? = null
     ) {
         context.dataStore.edit { prefs ->
             refreshRate?.let { prefs[KEY_CURRENT_REFRESH_RATE] = it.name }
@@ -227,6 +284,20 @@ class SettingsRepository(private val context: Context) {
             animationScale?.let { prefs[KEY_CURRENT_ANIM_SCALE] = it }
             phantomGuard?.let { prefs[KEY_PHANTOM_GUARD] = it }
             thermalOverride?.let { prefs[KEY_THERMAL_OVERRIDE] = it }
+            miuiHomeAnimRate?.let { prefs[KEY_MIUI_HOME_ANIM_RATE] = it.name }
+            gameDriverEnabled?.let { prefs[KEY_GAME_DRIVER_ENABLED] = it }
+            cachedFreezerEnabled?.let { prefs[KEY_CACHED_FREEZER_ENABLED] = it }
+            privateDnsPreset?.let { prefs[KEY_PRIVATE_DNS_PRESET] = it.name }
+            wifiScanDisabled?.let { prefs[KEY_WIFI_SCAN_DISABLED] = it }
+            bleScanDisabled?.let { prefs[KEY_BLE_SCAN_DISABLED] = it }
         }
+    }
+
+    suspend fun updateFrozenByAppPackages(packages: Set<String>) {
+        context.dataStore.edit { it[KEY_FROZEN_BY_APP_PACKAGES] = packages }
+    }
+
+    suspend fun updateRestrictedBgPackages(packages: Set<String>) {
+        context.dataStore.edit { it[KEY_RESTRICTED_BG_PACKAGES] = packages }
     }
 }

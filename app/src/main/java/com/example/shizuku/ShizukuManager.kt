@@ -8,6 +8,7 @@ import android.os.IBinder
 import com.example.BuildConfig
 import com.example.IShellService
 import com.example.R
+import com.example.data.ShellLogEntry
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,6 +19,10 @@ import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import rikka.shizuku.Shizuku
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.concurrent.atomic.AtomicLong
 
 enum class ShizukuStatus {
     NOT_RUNNING,
@@ -40,6 +45,7 @@ class ShizukuManager(
 
     companion object {
         private const val REQUEST_CODE_SHIZUKU = 3090
+        private const val MAX_LOG_ENTRIES = 20
     }
 
     private val _status = MutableStateFlow(ShizukuStatus.NOT_RUNNING)
@@ -48,6 +54,10 @@ class ShizukuManager(
     private val _shizukuVersion = MutableStateFlow<Int?>(null)
     val shizukuVersion: StateFlow<Int?> = _shizukuVersion.asStateFlow()
 
+    private val _commandLogs = MutableStateFlow<List<ShellLogEntry>>(emptyList())
+    val commandLogs: StateFlow<List<ShellLogEntry>> = _commandLogs.asStateFlow()
+
+    private val logIdGen = AtomicLong(1L)
     private val bindMutex = Mutex()
     private var shellService: IShellService? = null
     private var serviceDeferred: CompletableDeferred<IShellService?>? = null
@@ -230,7 +240,11 @@ class ShizukuManager(
     suspend fun executeCommand(command: String): ShellCommandResult = withContext(Dispatchers.IO) {
         val loc = localizedContextProvider()
         val service = getOrBindService()
-            ?: return@withContext ShellCommandResult(-1, loc.getString(R.string.msg_shizuku_not_ready))
+        if (service == null) {
+            val res = ShellCommandResult(-1, loc.getString(R.string.msg_shizuku_not_ready))
+            recordLog(command, res)
+            return@withContext res
+        }
         return@withContext try {
             val raw = service.executeCommand(command)
                 ?: "EXIT:-1\n${loc.getString(R.string.msg_shell_no_reply)}"
@@ -238,13 +252,33 @@ class ShizukuManager(
             val header = if (firstNewLine == -1) raw else raw.substring(0, firstNewLine)
             val body = if (firstNewLine == -1) "" else raw.substring(firstNewLine + 1)
             val code = header.removePrefix("EXIT:").trim().toIntOrNull() ?: -1
-            ShellCommandResult(code, body)
+            val res = ShellCommandResult(code, body)
+            recordLog(command, res)
+            res
         } catch (t: Throwable) {
             shellService = null
             isBound = false
             refreshStatus()
-            ShellCommandResult(-1, t.message ?: loc.getString(R.string.msg_shell_service_error))
+            val res = ShellCommandResult(-1, t.message ?: loc.getString(R.string.msg_shell_service_error))
+            recordLog(command, res)
+            res
         }
+    }
+
+    private fun recordLog(command: String, result: ShellCommandResult) {
+        val time = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
+        val entry = ShellLogEntry(
+            id = logIdGen.getAndIncrement(),
+            timestamp = time,
+            command = command,
+            exitCode = result.exitCode,
+            output = result.output.take(300)
+        )
+        _commandLogs.value = (listOf(entry) + _commandLogs.value).take(MAX_LOG_ENTRIES)
+    }
+
+    fun clearCommandLogs() {
+        _commandLogs.value = emptyList()
     }
 
     suspend fun grantPersistentPermissions(): ShellCommandResult {

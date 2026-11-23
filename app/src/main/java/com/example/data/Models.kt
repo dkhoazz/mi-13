@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import androidx.annotation.StringRes
 import com.example.R
+import com.example.hyperos.DebloatEntry
 
 enum class AppLanguage(val code: String, @StringRes val labelRes: Int, @StringRes val shortRes: Int) {
     SYSTEM("system", R.string.lang_system, R.string.lang_short_system),
@@ -15,6 +16,24 @@ enum class RefreshRateMode(@StringRes val labelRes: Int) {
     DYNAMIC(R.string.rr_dynamic),
     HZ_60(R.string.rr_60hz),
     HZ_120(R.string.rr_120hz)
+}
+
+enum class HyperAnimRate(val settingValue: String, @StringRes val labelRes: Int) {
+    FAST("0", R.string.home_anim_fast),
+    BALANCED("1", R.string.home_anim_balanced),
+    ELEGANT("2", R.string.home_anim_elegant)
+}
+
+enum class PrivateDnsPreset(val mode: String, val host: String?, @StringRes val labelRes: Int) {
+    OFF("off", null, R.string.dns_off),
+    ADGUARD("hostname", "dns.adguard-dns.com", R.string.dns_adguard),
+    CLOUDFLARE("hostname", "one.one.one.one", R.string.dns_cloudflare),
+    GOOGLE("hostname", "dns.google", R.string.dns_google)
+}
+
+enum class ArtCompileMode(val flag: String, @StringRes val labelRes: Int, @StringRes val descRes: Int) {
+    SPEED_PROFILE("speed-profile", R.string.art_mode_speed_profile, R.string.art_mode_speed_profile_desc),
+    SPEED("speed", R.string.art_mode_speed, R.string.art_mode_speed_desc)
 }
 
 enum class ProfileId(
@@ -34,7 +53,9 @@ data class ProfileConfig(
     val speedMode: Boolean,
     val animationScale: Float,
     val phantomGuard: Boolean,
-    val thermalOverride: Boolean
+    val thermalOverride: Boolean,
+    val gameDriverOptIn: Boolean = false,
+    val cachedFreezer: Boolean = true
 ) {
     fun resolveName(context: Context): String =
         customName?.takeIf { it.isNotBlank() } ?: context.getString(id.defaultTitleRes)
@@ -49,7 +70,14 @@ data class StockSystemSnapshot(
     val speedMode: String? = null,
     val windowAnimationScale: String? = null,
     val transitionAnimationScale: String? = null,
-    val animatorDurationScale: String? = null
+    val animatorDurationScale: String? = null,
+    val miuiHomeAnimRate: String? = null,
+    val gameDriverApps: String? = null,
+    val privateDnsMode: String? = null,
+    val privateDnsSpecifier: String? = null,
+    val wifiScanAlwaysEnabled: String? = null,
+    val bleScanAlwaysEnabled: String? = null,
+    val cachedAppFreezer: String? = null
 )
 
 data class AppPreferencesState(
@@ -72,6 +100,14 @@ data class AppPreferencesState(
     val currentRefreshRate: RefreshRateMode = RefreshRateMode.DYNAMIC,
     val currentSpeedMode: Boolean = false,
     val currentAnimationScale: Float = 1.0f,
+    val miuiHomeAnimRate: HyperAnimRate = HyperAnimRate.BALANCED,
+    val gameDriverEnabled: Boolean = false,
+    val cachedFreezerEnabled: Boolean = false,
+    val privateDnsPreset: PrivateDnsPreset = PrivateDnsPreset.OFF,
+    val wifiScanDisabled: Boolean = false,
+    val bleScanDisabled: Boolean = false,
+    val frozenByAppPackages: Set<String> = emptySet(),
+    val restrictedBgPackages: Set<String> = emptySet(),
     val profiles: Map<ProfileId, ProfileConfig> = defaultProfilesMap()
 )
 
@@ -82,7 +118,9 @@ fun defaultProfilesMap(): Map<ProfileId, ProfileConfig> = mapOf(
         speedMode = true,
         animationScale = 0.5f,
         phantomGuard = true,
-        thermalOverride = true
+        thermalOverride = true,
+        gameDriverOptIn = true,
+        cachedFreezer = true
     ),
     ProfileId.BALANCED to ProfileConfig(
         id = ProfileId.BALANCED,
@@ -90,7 +128,9 @@ fun defaultProfilesMap(): Map<ProfileId, ProfileConfig> = mapOf(
         speedMode = false,
         animationScale = 0.75f,
         phantomGuard = true,
-        thermalOverride = false
+        thermalOverride = false,
+        gameDriverOptIn = false,
+        cachedFreezer = true
     ),
     ProfileId.BATTERY_SAVER to ProfileConfig(
         id = ProfileId.BATTERY_SAVER,
@@ -98,7 +138,9 @@ fun defaultProfilesMap(): Map<ProfileId, ProfileConfig> = mapOf(
         speedMode = false,
         animationScale = 1.0f,
         phantomGuard = false,
-        thermalOverride = false
+        thermalOverride = false,
+        gameDriverOptIn = false,
+        cachedFreezer = true
     ),
     ProfileId.COOL_CHARGING to ProfileConfig(
         id = ProfileId.COOL_CHARGING,
@@ -106,7 +148,9 @@ fun defaultProfilesMap(): Map<ProfileId, ProfileConfig> = mapOf(
         speedMode = false,
         animationScale = 0.5f,
         phantomGuard = false,
-        thermalOverride = false
+        thermalOverride = false,
+        gameDriverOptIn = false,
+        cachedFreezer = true
     )
 )
 
@@ -182,4 +226,25 @@ data class InstalledAppItem(
     val packageName: String,
     val appName: String,
     val iconBitmap: Bitmap? = null
+)
+
+data class DebloatPackageState(
+    val entry: DebloatEntry,
+    val isInstalled: Boolean,
+    val isDisabled: Boolean
+)
+
+data class ArtCompileProgress(
+    val isRunning: Boolean = false,
+    val currentPackage: String? = null,
+    val completed: Int = 0,
+    val total: Int = 0
+)
+
+data class ShellLogEntry(
+    val id: Long,
+    val timestamp: String,
+    val command: String,
+    val exitCode: Int,
+    val output: String
 )

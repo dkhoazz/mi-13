@@ -13,6 +13,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -72,9 +74,11 @@ import com.example.ui.theme.GaugePercentStyle
 import com.example.ui.theme.HyperAmber
 import com.example.ui.theme.HyperGreenBright
 import com.example.ui.theme.HyperRed
+import com.example.ui.theme.HyperTeal
 import com.example.ui.theme.TelemetryNumberStyle
 import kotlin.math.roundToInt
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun OverviewBatteryScreen(
     telemetry: BatteryTelemetry,
@@ -172,6 +176,52 @@ fun OverviewBatteryScreen(
                             text = stringResource(R.string.overview_triggered_by, triggerText),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+        }
+
+        // HyperOS 3 Deep Optimization Status Summary Strip
+        item {
+            Card(
+                shape = RoundedCornerShape(20.dp),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(14.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = stringResource(R.string.overview_deep_summary_title),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    FlowRow(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        DeepSummaryPill(
+                            text = stringResource(
+                                if (prefs.cachedFreezerEnabled) R.string.overview_chip_freezer_on
+                                else R.string.overview_chip_freezer_off
+                            ),
+                            accent = if (prefs.cachedFreezerEnabled) HyperGreenBright else MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        DeepSummaryPill(
+                            text = stringResource(R.string.overview_chip_dns, stringResource(prefs.privateDnsPreset.labelRes)),
+                            accent = HyperTeal
+                        )
+                        DeepSummaryPill(
+                            text = stringResource(R.string.overview_chip_frozen, prefs.frozenByAppPackages.size),
+                            accent = MaterialTheme.colorScheme.primary
+                        )
+                        DeepSummaryPill(
+                            text = stringResource(R.string.overview_chip_bg_restricted, prefs.restrictedBgPackages.size),
+                            accent = HyperAmber
                         )
                     }
                 }
@@ -452,6 +502,22 @@ fun OverviewBatteryScreen(
 }
 
 @Composable
+private fun DeepSummaryPill(text: String, accent: Color) {
+    Surface(
+        shape = RoundedCornerShape(10.dp),
+        color = accent.copy(alpha = 0.13f),
+        border = BorderStroke(1.dp, accent.copy(alpha = 0.35f))
+    ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.labelMedium,
+            color = accent,
+            modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
+        )
+    }
+}
+
+@Composable
 private fun BatteryCircularGauge(
     level: Int,
     isCharging: Boolean,
@@ -485,7 +551,6 @@ private fun BatteryCircularGauge(
                 useCenter = false,
                 style = Stroke(width = strokeWidth, cap = StrokeCap.Round)
             )
-            // Subtle highlight cap dot at top
             drawCircle(
                 color = gaugeColor.copy(alpha = 0.25f),
                 radius = strokeWidth * 0.65f,

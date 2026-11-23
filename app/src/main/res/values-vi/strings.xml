@@ -5,8 +5,14 @@
     <!-- Navigation Tabs -->
     <string name="tab_overview">Tổng quan</string>
     <string name="tab_profiles">Profile</string>
-    <string name="tab_tweaks">Tối ưu</string>
+    <string name="tab_tweaks">Tối ưu sâu</string>
     <string name="tab_antikill">Chống Kill</string>
+
+    <!-- Deep Tune Sub-Tabs -->
+    <string name="subtab_system">Hệ thống &amp; Game</string>
+    <string name="subtab_debloater">Debloater CN</string>
+    <string name="subtab_art_cache">ART &amp; Dọn rác</string>
+    <string name="subtab_ram_net">RAM &amp; Mạng</string>
 
     <!-- Language Selector -->
     <string name="lang_switcher_cd">Đổi ngôn ngữ ứng dụng</string>
@@ -50,11 +56,17 @@
     <string name="trigger_user_default">Mặc định đã chọn</string>
 
     <!-- Overview Screen -->
-    <string name="overview_title">Tổng quan Pin &amp; HyperOS</string>
+    <string name="overview_title">Trung tâm HyperOS 3</string>
     <string name="overview_active_profile">Profile đang chạy: %1$s</string>
     <string name="overview_triggered_by">Kích hoạt bởi: %1$s</string>
     <string name="overview_alarm_ringing_fallback">Chuông báo pin đang kêu</string>
     <string name="overview_snoozed_badge">Đã tạm hoãn chuông sạc (5 phút)</string>
+    <string name="overview_deep_summary_title">Trạng thái Tối ưu Sâu HyperOS 3</string>
+    <string name="overview_chip_freezer_on">Đóng băng RAM: BẬT</string>
+    <string name="overview_chip_freezer_off">Đóng băng RAM: TẮT</string>
+    <string name="overview_chip_dns">DNS: %1$s</string>
+    <string name="overview_chip_frozen">Đã đóng băng: %1$d</string>
+    <string name="overview_chip_bg_restricted">Hạn chế nền: %1$d</string>
     <string name="btn_dismiss_alarm">Tắt chuông</string>
     <string name="btn_snooze_alarm">Báo lại 5p</string>
     <string name="stat_power">Công suất</string>
@@ -87,6 +99,7 @@
     <string name="profile_summary_fmt">%1$s • Speed: %2$s • Hoạt ảnh %3$sx</string>
     <string name="profile_tag_phantom"> • Phantom Guard</string>
     <string name="profile_tag_thermal"> • Mở khóa nhiệt</string>
+    <string name="profile_tag_gamedriver"> • Game Driver</string>
     <string name="profile_in_use">Đang dùng (%1$s)</string>
     <string name="cd_edit_profile">Chỉnh sửa</string>
     <string name="btn_apply_now">Áp dụng ngay</string>
@@ -96,6 +109,8 @@
     <string name="label_speed_mode">Chế độ Hiệu năng (speed_mode)</string>
     <string name="label_phantom_guard">Phantom Process Guard</string>
     <string name="label_thermal_override">Mở khóa giới hạn nhiệt (&lt;43°C)</string>
+    <string name="label_game_driver">Game Driver GPU</string>
+    <string name="label_cached_freezer">Đóng băng App nền (Freezer)</string>
     <string name="btn_save">Lưu</string>
     <string name="btn_cancel">Hủy</string>
     <string name="btn_done">Xong</string>
@@ -104,9 +119,9 @@
     <string name="hint_search_apps">Tìm tên ứng dụng hoặc gói...</string>
     <string name="empty_apps_search">Không tìm thấy ứng dụng phù hợp</string>
 
-    <!-- Tweaks Screen -->
-    <string name="tweaks_title">Tối ưu HyperOS 3.0.309.0</string>
-    <string name="tweaks_subtitle">Tinh chỉnh hệ thống không cần Root qua Shizuku &amp; quyền bền vững.</string>
+    <!-- Tweaks Screen: System & Game -->
+    <string name="tweaks_title">Tối Ưu Sâu HyperOS 3</string>
+    <string name="tweaks_subtitle">Tinh chỉnh toàn diện ROM Nội địa Trung qua Shizuku (Không Root).</string>
     <string name="tweaks_perms_card_title">Trạng thái quyền hệ thống</string>
     <string name="shizuku_ready">Shizuku: Sẵn sàng</string>
     <string name="shizuku_connecting">Shizuku: Đang kết nối</string>
@@ -119,16 +134,112 @@
     <string name="tweak_rr_desc">Ghi đồng bộ user/min/peak/miui_refresh_rate để HyperOS 3 giữ đúng tần số quét.</string>
     <string name="tweak_speed_title">Chế độ Hiệu năng (speed_mode)</string>
     <string name="tweak_speed_desc">Ưu tiên xung nhịp CPU/GPU và giảm độ trễ cảm ứng khi chơi game.</string>
+    <string name="tweak_home_anim_title">Tốc độ hoạt ảnh Launcher HyperOS</string>
+    <string name="tweak_home_anim_desc">Chỉnh miui_home_animation_rate giúp đóng mở app phản hồi nhanh hơn.</string>
+    <string name="home_anim_fast">Nhanh</string>
+    <string name="home_anim_balanced">Cân bằng</string>
+    <string name="home_anim_elegant">Mượt chậm</string>
     <string name="tweak_anim_title">Tốc độ hoạt ảnh hệ thống (%1$sx)</string>
+    <string name="tweak_game_driver_title">Kích hoạt Game Driver GPU</string>
+    <string name="tweak_game_driver_desc">Ép dùng driver GPU hiệu năng cao cho %1$d game/ứng dụng đã chọn.</string>
     <string name="tweak_phantom_title">Chống kill tiến trình ẩn (Phantom Guard)</string>
     <string name="tweak_phantom_desc">Vô hiệu hóa giới hạn 32 tiến trình con trên Android 16 / HyperOS 3 qua Shizuku.</string>
     <string name="tweak_thermal_title">Mở khóa giới hạn nhiệt (Thermal Override)</string>
     <string name="tweak_thermal_desc">Giảm bóp xung khi chơi game nặng (yêu cầu Shizuku).</string>
     <string name="tweak_thermal_warning">Cảnh báo an toàn: Tự động ngắt và chạy cmd thermalservice reset nếu pin vượt 43.0°C (Hiện tại: %1$.1f°C).</string>
-    <string name="btn_restore_defaults">Khôi phục mặc định</string>
+    <string name="btn_restore_defaults">Khôi phục toàn bộ mặc định gốc</string>
 
-    <!-- Anti-Kill Guide Screen -->
-    <string name="antikill_title">Chống Kill Ngầm HyperOS 3</string>
+    <!-- China ROM Debloater -->
+    <string name="debloat_safety_title">Lá chắn chống Bootloop ROM Nội địa</string>
+    <string name="debloat_safety_desc">Dùng lệnh pm disable-user (hoàn tác 100%, không gỡ APK). Các gói lõi (SecurityCenter, LBE, XMSF, MiuiHome, PowerKeeper) bị khóa cứng bảo vệ.</string>
+    <string name="btn_freeze_safe_pack">Đóng băng gói An toàn</string>
+    <string name="btn_restore_all_frozen">Mở khóa lại (%1$d)</string>
+    <string name="btn_refresh_debloat">Quét gói máy</string>
+    <string name="risk_all">Tất cả</string>
+    <string name="risk_safe">An toàn</string>
+    <string name="risk_moderate">Trung bình</string>
+    <string name="risk_caution">Cảnh báo</string>
+    <string name="pkg_status_active">Đang bật</string>
+    <string name="pkg_status_frozen">Đã đóng băng</string>
+    <string name="pkg_status_not_installed">Chưa cài</string>
+    <string name="caution_dialog_title">Xác nhận gói Cảnh báo</string>
+    <string name="caution_dialog_body">Đóng băng %1$s (%2$s) có thể ảnh hưởng cấu hình game đám mây hoặc telemetry. Bạn có thể bật lại bất cứ lúc nào tại đây.</string>
+    <string name="btn_freeze_anyway">Đóng băng</string>
+
+    <!-- Debloat Package Catalog (VI) -->
+    <string name="deb_msa_title">Dịch vụ quảng cáo MSA China</string>
+    <string name="deb_msa_desc">Chạy ngầm chèn quảng cáo vào các ứng dụng hệ thống Xiaomi ROM Trung.</string>
+    <string name="deb_analytics_title">MIUI Analytics</string>
+    <string name="deb_analytics_desc">Thu thập dữ liệu hành vi và theo dõi quảng cáo nền.</string>
+    <string name="deb_daemon_title">MIUI System Daemon</string>
+    <string name="deb_daemon_desc">Tiến trình thu thập log chẩn đoán chạy ngầm.</string>
+    <string name="deb_ab_title">Xiaomi A/B Experiment</string>
+    <string name="deb_ab_desc">Dịch vụ thăm dò cấu hình thử nghiệm từ máy chủ.</string>
+    <string name="deb_bugreport_title">Báo lỗi MIUI BugReport</string>
+    <string name="deb_bugreport_desc">Gửi báo cáo sự cố và đóng gói log hệ thống.</string>
+    <string name="deb_hybrid_title">Ứng dụng nhanh (Quick Apps / Hybrid)</string>
+    <string name="deb_hybrid_desc">Nền tảng mini-app hay tự đánh thức ngầm và hao pin nhiều trên ROM CN.</string>
+    <string name="deb_hybrid_acc_title">Dịch vụ phụ trợ Quick Apps</string>
+    <string name="deb_hybrid_acc_desc">Tiến trình chạy kèm của Ứng dụng nhanh.</string>
+    <string name="deb_vip_title">Tài khoản Xiaomi VIP</string>
+    <string name="deb_vip_desc">Thông báo khuyến mãi hội viên nội địa.</string>
+    <string name="deb_shop_title">Cửa hàng Xiaomi Mall</string>
+    <string name="deb_shop_desc">Ứng dụng mua sắm cài sẵn trên ROM nội địa.</string>
+    <string name="deb_youpin_title">Xiaomi Youpin</string>
+    <string name="deb_youpin_desc">Ứng dụng thương mại điện tử cài sẵn.</string>
+    <string name="deb_yellowpage_title">Danh bạ Trang Vàng (YellowPage)</string>
+    <string name="deb_yellowpage_desc">Dịch vụ tra cứu số dịch vụ tại Trung Quốc.</string>
+    <string name="deb_newhome_title">Bảng tin nội dung (NewHome)</string>
+    <string name="deb_newhome_desc">Trang tin tức &amp; tìm kiếm vuốt lên tiếng Trung.</string>
+    <string name="deb_video_title">Mi Video (Nội địa)</string>
+    <string name="deb_video_desc">Trình phát video cài sẵn kèm bảng tin online Trung Quốc.</string>
+    <string name="deb_player_title">Mi Music (Nội địa)</string>
+    <string name="deb_player_desc">Trình nghe nhạc nội địa kèm quảng cáo.</string>
+    <string name="deb_gamecenter_title">Xiaomi Game Center (CN)</string>
+    <string name="deb_gamecenter_desc">Chợ game nội địa và SDK khuyến mãi.</string>
+    <string name="deb_duokan_title">Trình đọc sách Duokan</string>
+    <string name="deb_duokan_desc">Kho sách điện tử tiếng Trung cài sẵn.</string>
+    <string name="deb_voiceassist_title">Trợ lý ảo XiaoAi</string>
+    <string name="deb_voiceassist_desc">Trợ lý giọng nói tiếng Trung; an toàn khi đóng băng nếu không dùng.</string>
+    <string name="deb_mibrain_title">Lõi nhận diện giọng nói MiBrain</string>
+    <string name="deb_mibrain_desc">Dịch vụ xử lý giọng nói nền cho XiaoAi.</string>
+    <string name="deb_joyose_title">Xiaomi Joyose</string>
+    <string name="deb_joyose_desc">Kiểm soát bóp xung game theo đám mây &amp; đồng bộ. Đóng băng giúp giữ FPS ổn định nhưng tắt đồng bộ cấu hình game.</string>
+
+    <!-- ART dex2oat & Cache Cleaner -->
+    <string name="art_card_title">Biên dịch ứng dụng ART (dex2oat)</string>
+    <string name="art_card_desc">Biên dịch sẵn mã máy qua Shizuku giúp mở app tức thì và cuộn mượt hơn.</string>
+    <string name="art_mode_speed_profile">speed-profile (Cân bằng)</string>
+    <string name="art_mode_speed_profile_desc">Biên dịch phần mã hay dùng, tiết kiệm dung lượng bộ nhớ.</string>
+    <string name="art_mode_speed">speed (Mượt tối đa)</string>
+    <string name="art_mode_speed_desc">Biên dịch toàn bộ AOT cho tốc độ mở app nặng và game nhanh nhất.</string>
+    <string name="btn_run_bg_dexopt">Chạy tối ưu hệ thống (bg-dexopt-job)</string>
+    <string name="btn_compile_all_apps">Biên dịch tất cả App (%1$d)</string>
+    <string name="btn_compile_one">Biên dịch</string>
+    <string name="art_progress_fmt">Đang biên dịch %1$s (%2$d / %3$d)</string>
+    <string name="cleaner_card_title">Dọn rác Cache hệ thống</string>
+    <string name="cleaner_card_desc">Giải phóng bộ nhớ đệm toàn máy an toàn bằng lệnh pm trim-caches.</string>
+    <string name="btn_trim_caches">Dọn Cache hệ thống ngay</string>
+
+    <!-- RAM, Background & Network Latency -->
+    <string name="ram_freezer_title">Đóng băng App nền (Cached App Freezer)</string>
+    <string name="ram_freezer_desc">Đóng băng tiến trình cached ở mức kernel cgroup, triệt tiêu hao pin chờ.</string>
+    <string name="net_dns_title">Private DNS (Chặn quảng cáo &amp; Giảm Ping)</string>
+    <string name="net_dns_desc">Áp dụng DNS mã hóa toàn hệ thống không cần chạy VPN.</string>
+    <string name="dns_off">Tự động</string>
+    <string name="dns_adguard">AdGuard DNS</string>
+    <string name="dns_cloudflare">Cloudflare 1.1.1.1</string>
+    <string name="dns_google">Google DNS</string>
+    <string name="net_scan_card_title">Chống quét sóng ngầm</string>
+    <string name="net_wifi_scan_title">Tắt quét Wi-Fi liên tục khi tắt Wi-Fi</string>
+    <string name="net_wifi_scan_desc">Ngăn dịch vụ vị trí tự quét Wi-Fi nền gây hao pin.</string>
+    <string name="net_ble_scan_title">Tắt quét Bluetooth BLE nền</string>
+    <string name="net_ble_scan_desc">Ngăn quét thiết bị BLE ngầm khi đã tắt Bluetooth.</string>
+    <string name="bg_restrict_title">Ép ngủ App ngốn RAM (Standby + AppOps)</string>
+    <string name="bg_restrict_desc">Đưa app vào Standby Bucket Restricted và chặn RUN_ANY_IN_BACKGROUND.</string>
+
+    <!-- Anti-Kill Guide Screen & Console -->
+    <string name="antikill_title">Chống Kill &amp; Nhật ký Shizuku</string>
     <string name="antikill_subtitle">Đảm bảo chuông báo sạc 80% &amp; Profile tự động chạy ổn định 24/7.</string>
     <string name="btn_recheck">Kiểm tra lại</string>
     <string name="checklist_title">Danh sách quyền bắt buộc</string>
@@ -141,7 +252,7 @@
     <string name="perm_write_settings_title">Quyền sửa cài đặt hệ thống (WRITE_SETTINGS)</string>
     <string name="perm_write_settings_desc">Điều chỉnh tần số quét 60Hz/120Hz và Speed Mode.</string>
     <string name="perm_shizuku_title">Quyền Shizuku</string>
-    <string name="perm_shizuku_desc">Dùng cho Phantom Process Guard, Thermalservice &amp; cấp quyền 1 chạm.</string>
+    <string name="perm_shizuku_desc">Dùng cho Phantom Guard, Debloater, ART dex2oat, Freezer &amp; cấp quyền 1 chạm.</string>
     <string name="btn_grant">Cấp quyền</string>
     <string name="btn_open_settings">Mở cài đặt</string>
     <string name="btn_open_shizuku">Mở Shizuku</string>
@@ -158,6 +269,9 @@
     <string name="guide_step5_title">Bước 5: Kiểm tra lại thông báo trên thanh trạng thái</string>
     <string name="guide_step5_desc">Luôn giữ thông báo nền đang hoạt động (hoặc tắt tiếng kênh thông báo \'Theo dõi Pin &amp; HyperOS\' thay vì tắt hẳn quyền thông báo).</string>
     <string name="btn_open_app_info">Mở Thông tin ứng dụng để cài Bước 1 &amp; 2</string>
+    <string name="console_title">Nhật ký lệnh Shizuku (20 lệnh gần nhất)</string>
+    <string name="console_empty">Chưa có lệnh Shizuku nào được thực thi trong phiên này.</string>
+    <string name="btn_clear_console">Xóa</string>
 
     <!-- Notifications & Foreground Service -->
     <string name="notif_channel_monitor_name">Theo dõi Pin &amp; HyperOS</string>
@@ -195,6 +309,10 @@
     <string name="msg_speed_fail">Không thể ghi speed_mode. Hãy cấp quyền tự động qua Shizuku.</string>
     <string name="msg_anim_ok">Đã đặt tỉ lệ hoạt ảnh %1$sx</string>
     <string name="msg_anim_fail">Thiếu WRITE_SECURE_SETTINGS hoặc Shizuku để chỉnh hoạt ảnh.</string>
+    <string name="msg_home_anim_ok">Đã chỉnh tốc độ Launcher HyperOS: %1$s</string>
+    <string name="msg_home_anim_fail">Không thể ghi miui_home_animation_rate.</string>
+    <string name="msg_game_driver_ok">Đã cập nhật danh sách Game Driver GPU.</string>
+    <string name="msg_game_driver_fail">Thiếu quyền để bật Game Driver.</string>
     <string name="msg_phantom_on">Đã bật Chống kill tiến trình ẩn (Phantom Guard)</string>
     <string name="msg_phantom_off">Đã khôi phục mặc định Phantom Process</string>
     <string name="msg_phantom_fail">Cần Shizuku hoạt động để chỉnh Phantom Process Guard: %1$s</string>
@@ -202,7 +320,29 @@
     <string name="msg_thermal_on">Đã bật Mở khóa giới hạn nhiệt (ngắt tự động &gt;43°C)</string>
     <string name="msg_thermal_off">Đã khôi phục kiểm soát nhiệt độ gốc</string>
     <string name="msg_thermal_fail">Cần Shizuku để điều khiển thermalservice: %1$s</string>
-    <string name="msg_restore_ok">Đã khôi phục toàn bộ thông số về mặc định gốc của HyperOS.</string>
+    <string name="msg_freezer_ok">Đã cập nhật Cached App Freezer.</string>
+    <string name="msg_freezer_fail">Cần Shizuku để chỉnh Cached App Freezer: %1$s</string>
+    <string name="msg_dns_ok">Đã đặt Private DNS: %1$s</string>
+    <string name="msg_dns_fail">Thiếu quyền hoặc Shizuku để chỉnh Private DNS.</string>
+    <string name="msg_scan_guard_ok">Đã cập nhật chống quét sóng nền.</string>
+    <string name="msg_scan_guard_fail">Thiếu quyền hoặc Shizuku để chỉnh quét sóng nền.</string>
+    <string name="msg_pkg_blocked">Đã chặn: Không được phép tác động vào gói hệ thống cốt lõi HyperOS.</string>
+    <string name="msg_pkg_frozen">Đã đóng băng %1$s</string>
+    <string name="msg_pkg_restored">Đã bật lại %1$s</string>
+    <string name="msg_pkg_fail">Thao tác gói thất bại: %1$s</string>
+    <string name="msg_safe_pack_done">Đã đóng băng %1$d gói rác an toàn ROM Trung.</string>
+    <string name="msg_restore_frozen_done">Đã mở khóa lại %1$d gói từng đóng băng.</string>
+    <string name="msg_bg_restricted">Đã ép ngủ nền cho %1$s</string>
+    <string name="msg_bg_restored">Đã khôi phục chạy nền bình thường cho %1$s</string>
+    <string name="msg_bg_fail">Không thể đổi chế độ nền: %1$s</string>
+    <string name="msg_art_one_ok">Đã biên dịch %1$s (%2$s)</string>
+    <string name="msg_art_one_fail">Biên dịch %1$s thất bại: %2$s</string>
+    <string name="msg_art_batch_done">Hoàn tất biên dịch %1$d / %2$d ứng dụng (%3$s)</string>
+    <string name="msg_art_bg_dexopt_ok">Đã chạy xong tối ưu ART hệ thống (bg-dexopt-job).</string>
+    <string name="msg_art_bg_dexopt_fail">bg-dexopt-job thất bại: %1$s</string>
+    <string name="msg_trim_cache_ok">Đã dọn sạch bộ nhớ đệm hệ thống.</string>
+    <string name="msg_trim_cache_fail">Dọn cache thất bại: %1$s</string>
+    <string name="msg_restore_ok">Đã khôi phục toàn bộ thông số và gói đóng băng về mặc định gốc của HyperOS.</string>
     <string name="msg_shizuku_not_ready">Shizuku chưa sẵn sàng hoặc chưa được cấp quyền.</string>
     <string name="msg_shell_empty">Lệnh trống</string>
     <string name="msg_shell_no_reply">Không có phản hồi</string>

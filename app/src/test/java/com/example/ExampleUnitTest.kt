@@ -5,6 +5,7 @@ import com.example.data.AppPreferencesState
 import com.example.data.ProfileId
 import com.example.data.RefreshRateMode
 import com.example.data.defaultProfilesMap
+import com.example.hyperos.ChinaDebloatCatalog
 import com.example.shizuku.ShellCommandResult
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -24,6 +25,7 @@ class ExampleUnitTest {
         assertEquals(0.5f, gaming.animationScale)
         assertTrue(gaming.phantomGuard)
         assertTrue(gaming.thermalOverride)
+        assertTrue(gaming.gameDriverOptIn)
 
         val cool = profiles.getValue(ProfileId.COOL_CHARGING)
         assertEquals(RefreshRateMode.HZ_60, cool.refreshRate)
@@ -45,5 +47,36 @@ class ExampleUnitTest {
         assertTrue(ShellCommandResult(0, "ok").isSuccess)
         assertFalse(ShellCommandResult(1, "err").isSuccess)
         assertFalse(ShellCommandResult(-1, "fail").isSuccess)
+    }
+
+    @Test
+    fun china_debloat_blocklist_protects_core_hyperos_and_has_no_catalog_overlap() {
+        val requiredCorePackages = listOf(
+            "com.miui.securitycenter",
+            "com.lbe.security.miui",
+            "com.miui.home",
+            "com.xiaomi.xmsf",
+            "com.xiaomi.account",
+            "com.miui.powerkeeper",
+            "com.android.systemui",
+            "com.android.settings"
+        )
+        requiredCorePackages.forEach { corePkg ->
+            assertTrue(
+                "Core package $corePkg must remain in HARD_BLOCKLIST",
+                ChinaDebloatCatalog.HARD_BLOCKLIST.contains(corePkg)
+            )
+        }
+
+        val catalogPackages = ChinaDebloatCatalog.entries.map { it.packageName }.toSet()
+        assertEquals("Catalog entries must have unique package names", ChinaDebloatCatalog.entries.size, catalogPackages.size)
+
+        val overlap = catalogPackages.intersect(ChinaDebloatCatalog.HARD_BLOCKLIST)
+        assertTrue("Catalog must have zero overlap with HARD_BLOCKLIST, found: $overlap", overlap.isEmpty())
+
+        val validPackageRegex = Regex("^[a-zA-Z0-9._]+$")
+        catalogPackages.forEach { pkg ->
+            assertTrue("Invalid package name format: $pkg", validPackageRegex.matches(pkg))
+        }
     }
 }

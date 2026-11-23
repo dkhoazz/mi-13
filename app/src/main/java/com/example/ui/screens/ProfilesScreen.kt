@@ -21,7 +21,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AcUnit
 import androidx.compose.material.icons.rounded.Apps
@@ -439,6 +441,7 @@ private fun ProfileCard(
         append(baseSummary)
         if (config.phantomGuard) append(context.getString(R.string.profile_tag_phantom))
         if (config.thermalOverride) append(context.getString(R.string.profile_tag_thermal))
+        if (config.gameDriverOptIn) append(context.getString(R.string.profile_tag_gamedriver))
     }
 
     Card(
@@ -543,13 +546,18 @@ private fun ProfileEditDialog(
     var animScale by remember { mutableFloatStateOf(initial.animationScale) }
     var phantomGuard by remember { mutableStateOf(initial.phantomGuard) }
     var thermalOverride by remember { mutableStateOf(initial.thermalOverride) }
+    var gameDriverOptIn by remember { mutableStateOf(initial.gameDriverOptIn) }
+    var cachedFreezer by remember { mutableStateOf(initial.cachedFreezer) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
         containerColor = MaterialTheme.colorScheme.surface,
         title = { Text(stringResource(R.string.dialog_edit_title, initial.resolveName(context))) },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
                 Text(stringResource(R.string.label_refresh_rate), style = MaterialTheme.typography.labelMedium)
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     RefreshRateMode.entries.forEach { mode ->
@@ -577,10 +585,7 @@ private fun ProfileEditDialog(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        stringResource(R.string.label_speed_mode),
-                        modifier = Modifier.weight(1f)
-                    )
+                    Text(stringResource(R.string.label_speed_mode), modifier = Modifier.weight(1f))
                     Switch(checked = speedMode, onCheckedChange = { speedMode = it })
                 }
 
@@ -589,10 +594,7 @@ private fun ProfileEditDialog(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        stringResource(R.string.label_phantom_guard),
-                        modifier = Modifier.weight(1f)
-                    )
+                    Text(stringResource(R.string.label_phantom_guard), modifier = Modifier.weight(1f))
                     Switch(checked = phantomGuard, onCheckedChange = { phantomGuard = it })
                 }
 
@@ -601,11 +603,26 @@ private fun ProfileEditDialog(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        stringResource(R.string.label_thermal_override),
-                        modifier = Modifier.weight(1f)
-                    )
+                    Text(stringResource(R.string.label_thermal_override), modifier = Modifier.weight(1f))
                     Switch(checked = thermalOverride, onCheckedChange = { thermalOverride = it })
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(stringResource(R.string.label_game_driver), modifier = Modifier.weight(1f))
+                    Switch(checked = gameDriverOptIn, onCheckedChange = { gameDriverOptIn = it })
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(stringResource(R.string.label_cached_freezer), modifier = Modifier.weight(1f))
+                    Switch(checked = cachedFreezer, onCheckedChange = { cachedFreezer = it })
                 }
             }
         },
@@ -618,7 +635,9 @@ private fun ProfileEditDialog(
                             speedMode = speedMode,
                             animationScale = animScale,
                             phantomGuard = phantomGuard,
-                            thermalOverride = thermalOverride
+                            thermalOverride = thermalOverride,
+                            gameDriverOptIn = gameDriverOptIn,
+                            cachedFreezer = cachedFreezer
                         )
                     )
                 },

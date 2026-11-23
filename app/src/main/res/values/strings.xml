@@ -5,8 +5,14 @@
     <!-- Navigation Tabs -->
     <string name="tab_overview">Overview</string>
     <string name="tab_profiles">Profiles</string>
-    <string name="tab_tweaks">Tweaks</string>
+    <string name="tab_tweaks">Deep Tune</string>
     <string name="tab_antikill">Anti-Kill</string>
+
+    <!-- Deep Tune Sub-Tabs -->
+    <string name="subtab_system">System &amp; Game</string>
+    <string name="subtab_debloater">CN Debloater</string>
+    <string name="subtab_art_cache">ART &amp; Cleaner</string>
+    <string name="subtab_ram_net">RAM &amp; Network</string>
 
     <!-- Language Selector -->
     <string name="lang_switcher_cd">Switch app language</string>
@@ -50,11 +56,17 @@
     <string name="trigger_user_default">User Default</string>
 
     <!-- Overview Screen -->
-    <string name="overview_title">Battery &amp; HyperOS</string>
+    <string name="overview_title">HyperOS 3 Cockpit</string>
     <string name="overview_active_profile">Active Profile: %1$s</string>
     <string name="overview_triggered_by">Triggered by: %1$s</string>
     <string name="overview_alarm_ringing_fallback">Battery alarm is ringing</string>
     <string name="overview_snoozed_badge">Charge alarm snoozed (5 min)</string>
+    <string name="overview_deep_summary_title">HyperOS 3 Deep Optimization Status</string>
+    <string name="overview_chip_freezer_on">Freezer: ON</string>
+    <string name="overview_chip_freezer_off">Freezer: OFF</string>
+    <string name="overview_chip_dns">DNS: %1$s</string>
+    <string name="overview_chip_frozen">Frozen: %1$d</string>
+    <string name="overview_chip_bg_restricted">Restricted: %1$d</string>
     <string name="btn_dismiss_alarm">Dismiss</string>
     <string name="btn_snooze_alarm">Snooze 5m</string>
     <string name="stat_power">Power</string>
@@ -87,6 +99,7 @@
     <string name="profile_summary_fmt">%1$s • Speed: %2$s • Anim %3$sx</string>
     <string name="profile_tag_phantom"> • Phantom Guard</string>
     <string name="profile_tag_thermal"> • Thermal Unlock</string>
+    <string name="profile_tag_gamedriver"> • Game Driver</string>
     <string name="profile_in_use">Active (%1$s)</string>
     <string name="cd_edit_profile">Edit profile</string>
     <string name="btn_apply_now">Apply Now</string>
@@ -96,6 +109,8 @@
     <string name="label_speed_mode">Performance Mode (speed_mode)</string>
     <string name="label_phantom_guard">Phantom Process Guard</string>
     <string name="label_thermal_override">Thermal Limit Override (&lt;43°C)</string>
+    <string name="label_game_driver">Updatable Game Driver</string>
+    <string name="label_cached_freezer">Cached App Freezer</string>
     <string name="btn_save">Save</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_done">Done</string>
@@ -104,9 +119,9 @@
     <string name="hint_search_apps">Search app name or package...</string>
     <string name="empty_apps_search">No matching apps found</string>
 
-    <!-- Tweaks Screen -->
-    <string name="tweaks_title">HyperOS 3.0.309.0 Tweaks</string>
-    <string name="tweaks_subtitle">Rootless system tuning via Shizuku &amp; persistent permissions.</string>
+    <!-- Tweaks Screen: System & Game -->
+    <string name="tweaks_title">HyperOS 3 Deep Tune</string>
+    <string name="tweaks_subtitle">Comprehensive China ROM optimization via Shizuku (No Root).</string>
     <string name="tweaks_perms_card_title">System Permission Status</string>
     <string name="shizuku_ready">Shizuku: Ready</string>
     <string name="shizuku_connecting">Shizuku: Connecting</string>
@@ -119,16 +134,112 @@
     <string name="tweak_rr_desc">Syncs user/min/peak/miui_refresh_rate to lock refresh rate on HyperOS 3.</string>
     <string name="tweak_speed_title">Performance Mode (speed_mode)</string>
     <string name="tweak_speed_desc">Prioritizes CPU/GPU clocks and lowers touch latency during gaming.</string>
+    <string name="tweak_home_anim_title">HyperOS Launcher Animation Speed</string>
+    <string name="tweak_home_anim_desc">Tunes miui_home_animation_rate for snappier app open/close transitions.</string>
+    <string name="home_anim_fast">Fast</string>
+    <string name="home_anim_balanced">Balanced</string>
+    <string name="home_anim_elegant">Elegant</string>
     <string name="tweak_anim_title">System Animation Speed (%1$sx)</string>
+    <string name="tweak_game_driver_title">Production Game Driver Opt-In</string>
+    <string name="tweak_game_driver_desc">Enables updatable GPU driver for %1$d selected gaming apps.</string>
     <string name="tweak_phantom_title">Phantom Process Killer Guard</string>
     <string name="tweak_phantom_desc">Disables the 32 child-process limit on Android 16 / HyperOS 3 via Shizuku.</string>
     <string name="tweak_thermal_title">Thermal Limit Override</string>
     <string name="tweak_thermal_desc">Reduces thermal throttling during heavy gaming (requires Shizuku).</string>
     <string name="tweak_thermal_warning">Safety Cutoff: Automatically resets via cmd thermalservice reset if battery exceeds 43.0°C (Current: %1$.1f°C).</string>
-    <string name="btn_restore_defaults">Restore Stock Defaults</string>
+    <string name="btn_restore_defaults">Restore All Stock Defaults</string>
 
-    <!-- Anti-Kill Guide Screen -->
-    <string name="antikill_title">HyperOS 3 Anti-Kill Guide</string>
+    <!-- China ROM Debloater -->
+    <string name="debloat_safety_title">China ROM Anti-Bootloop Shield</string>
+    <string name="debloat_safety_desc">Uses reversible pm disable-user (no uninstall). Core packages (SecurityCenter, LBE, XMSF, MiuiHome, PowerKeeper) are permanently locked out.</string>
+    <string name="btn_freeze_safe_pack">Freeze All Safe Bloat</string>
+    <string name="btn_restore_all_frozen">Restore App-Frozen (%1$d)</string>
+    <string name="btn_refresh_debloat">Scan Packages</string>
+    <string name="risk_all">All</string>
+    <string name="risk_safe">Safe</string>
+    <string name="risk_moderate">Moderate</string>
+    <string name="risk_caution">Caution</string>
+    <string name="pkg_status_active">Active</string>
+    <string name="pkg_status_frozen">Frozen</string>
+    <string name="pkg_status_not_installed">Not Installed</string>
+    <string name="caution_dialog_title">Confirm Caution Package</string>
+    <string name="caution_dialog_body">Freezing %1$s (%2$s) may affect cloud game tuning or device telemetry. You can re-enable it here anytime.</string>
+    <string name="btn_freeze_anyway">Freeze</string>
+
+    <!-- Debloat Package Catalog (EN) -->
+    <string name="deb_msa_title">MSA China Ad Solution</string>
+    <string name="deb_msa_desc">System ad injection service across Xiaomi apps on China ROM.</string>
+    <string name="deb_analytics_title">MIUI Analytics</string>
+    <string name="deb_analytics_desc">Background usage telemetry &amp; ad attribution tracker.</string>
+    <string name="deb_daemon_title">MIUI System Daemon</string>
+    <string name="deb_daemon_desc">Background diagnostic telemetry collector.</string>
+    <string name="deb_ab_title">Xiaomi A/B Experiment Service</string>
+    <string name="deb_ab_desc">Remote feature flag &amp; telemetry polling service.</string>
+    <string name="deb_bugreport_title">MIUI Bug Report</string>
+    <string name="deb_bugreport_desc">Diagnostic log uploader and crash reporting agent.</string>
+    <string name="deb_hybrid_title">Xiaomi Quick Apps (Hybrid)</string>
+    <string name="deb_hybrid_desc">Instant mini-app framework that triggers frequent background wakeups on CN ROM.</string>
+    <string name="deb_hybrid_acc_title">Quick Apps Accessory</string>
+    <string name="deb_hybrid_acc_desc">Companion background runner for Quick Apps.</string>
+    <string name="deb_vip_title">Xiaomi VIP Account</string>
+    <string name="deb_vip_desc">Promotional membership &amp; marketing notifications.</string>
+    <string name="deb_shop_title">Xiaomi Mall / Shop</string>
+    <string name="deb_shop_desc">Preinstalled Xiaomi store app and promotional sync.</string>
+    <string name="deb_youpin_title">Xiaomi Youpin</string>
+    <string name="deb_youpin_desc">Preinstalled lifestyle e-commerce app.</string>
+    <string name="deb_yellowpage_title">MIUI Yellow Pages</string>
+    <string name="deb_yellowpage_desc">China caller directory &amp; merchant page integration.</string>
+    <string name="deb_newhome_title">Xiaomi Smart Feed / Content</string>
+    <string name="deb_newhome_desc">Chinese news feed &amp; swipe-up search content service.</string>
+    <string name="deb_video_title">Mi Video (CN)</string>
+    <string name="deb_video_desc">Preinstalled China video player with online feed.</string>
+    <string name="deb_player_title">Mi Music (CN)</string>
+    <string name="deb_player_desc">Preinstalled China music player with streaming promos.</string>
+    <string name="deb_gamecenter_title">Xiaomi Game Center (CN)</string>
+    <string name="deb_gamecenter_desc">China game store &amp; promotional SDK service.</string>
+    <string name="deb_duokan_title">Duokan Reader</string>
+    <string name="deb_duokan_desc">Preinstalled Chinese e-book store.</string>
+    <string name="deb_voiceassist_title">XiaoAi Voice Assistant</string>
+    <string name="deb_voiceassist_desc">Chinese voice assistant; safe to freeze if unused.</string>
+    <string name="deb_mibrain_title">MiBrain Speech Engine</string>
+    <string name="deb_mibrain_desc">Voice recognition backend for XiaoAi.</string>
+    <string name="deb_joyose_title">Xiaomi Joyose</string>
+    <string name="deb_joyose_desc">Controls cloud game thermal/FPS throttling &amp; Mi Cloud sync. Freezing unlocks sustained FPS but disables game cloud profiles.</string>
+
+    <!-- ART dex2oat & Cache Cleaner -->
+    <string name="art_card_title">ART App Compilation (dex2oat)</string>
+    <string name="art_card_desc">Pre-compiles bytecode natively via Shizuku for instant app launches and smoother scrolling.</string>
+    <string name="art_mode_speed_profile">speed-profile (Balanced)</string>
+    <string name="art_mode_speed_profile_desc">Compiles frequently used code paths while keeping storage footprint low.</string>
+    <string name="art_mode_speed">speed (Max Smoothness)</string>
+    <string name="art_mode_speed_desc">Full AOT compilation for flagship speed on heavy apps and games.</string>
+    <string name="btn_run_bg_dexopt">Run System bg-dexopt-job</string>
+    <string name="btn_compile_all_apps">Compile All User Apps (%1$d)</string>
+    <string name="btn_compile_one">Compile</string>
+    <string name="art_progress_fmt">Compiling %1$s (%2$d / %3$d)</string>
+    <string name="cleaner_card_title">System Cache Trimmer</string>
+    <string name="cleaner_card_desc">Safely reclaims reclaimable app caches across the system using pm trim-caches.</string>
+    <string name="btn_trim_caches">Trim System Caches Now</string>
+
+    <!-- RAM, Background & Network Latency -->
+    <string name="ram_freezer_title">Cached App Freezer</string>
+    <string name="ram_freezer_desc">Freezes cached background processes in kernel cgroup to stop idle battery drain.</string>
+    <string name="net_dns_title">Private DNS (Ad-Block &amp; Low Ping)</string>
+    <string name="net_dns_desc">Applies system-wide encrypted DNS over TLS without a VPN.</string>
+    <string name="dns_off">System Auto</string>
+    <string name="dns_adguard">AdGuard DNS</string>
+    <string name="dns_cloudflare">Cloudflare 1.1.1.1</string>
+    <string name="dns_google">Google DNS</string>
+    <string name="net_scan_card_title">Radio Background Scan Guard</string>
+    <string name="net_wifi_scan_title">Disable Always-On Wi-Fi Scanning</string>
+    <string name="net_wifi_scan_desc">Stops location services from polling Wi-Fi APs when Wi-Fi is off.</string>
+    <string name="net_ble_scan_title">Disable Always-On BLE Scanning</string>
+    <string name="net_ble_scan_desc">Stops background Bluetooth beacon scanning when Bluetooth is off.</string>
+    <string name="bg_restrict_title">Background App Restriction (Standby + AppOps)</string>
+    <string name="bg_restrict_desc">Forces selected apps into Restricted Standby Bucket and blocks RUN_ANY_IN_BACKGROUND.</string>
+
+    <!-- Anti-Kill Guide Screen & Console -->
+    <string name="antikill_title">HyperOS 3 Anti-Kill &amp; Console</string>
     <string name="antikill_subtitle">Keep 80% charge alarms &amp; automated profiles running reliably 24/7.</string>
     <string name="btn_recheck">Recheck</string>
     <string name="checklist_title">Required Permissions Checklist</string>
@@ -141,7 +252,7 @@
     <string name="perm_write_settings_title">Modify System Settings (WRITE_SETTINGS)</string>
     <string name="perm_write_settings_desc">Controls 60Hz/120Hz refresh rate and HyperOS Speed Mode.</string>
     <string name="perm_shizuku_title">Shizuku Service</string>
-    <string name="perm_shizuku_desc">Used for Phantom Process Guard, Thermalservice &amp; 1-tap permission grant.</string>
+    <string name="perm_shizuku_desc">Used for Phantom Guard, Debloater, ART dex2oat, Freezer &amp; 1-tap grant.</string>
     <string name="btn_grant">Grant</string>
     <string name="btn_open_settings">Open Settings</string>
     <string name="btn_open_shizuku">Open Shizuku</string>
@@ -158,6 +269,9 @@
     <string name="guide_step5_title">Step 5: Keep Monitor Notification Active</string>
     <string name="guide_step5_desc">Keep the ongoing monitor notification active (mute the \'Battery &amp; HyperOS Monitor\' channel instead of revoking notification permission).</string>
     <string name="btn_open_app_info">Open App Info for Steps 1 &amp; 2</string>
+    <string name="console_title">Shizuku Command Console (Last 20)</string>
+    <string name="console_empty">No Shizuku commands executed yet in this session.</string>
+    <string name="btn_clear_console">Clear</string>
 
     <!-- Notifications & Foreground Service -->
     <string name="notif_channel_monitor_name">Battery &amp; HyperOS Monitor</string>
@@ -195,6 +309,10 @@
     <string name="msg_speed_fail">Cannot write speed_mode. Grant permissions via Shizuku first.</string>
     <string name="msg_anim_ok">Animation scale set to %1$sx</string>
     <string name="msg_anim_fail">Missing WRITE_SECURE_SETTINGS or Shizuku permission to change animations.</string>
+    <string name="msg_home_anim_ok">Launcher animation speed updated: %1$s</string>
+    <string name="msg_home_anim_fail">Could not update miui_home_animation_rate.</string>
+    <string name="msg_game_driver_ok">Updated Game Driver opt-in list.</string>
+    <string name="msg_game_driver_fail">Missing permission to set updatable Game Driver.</string>
     <string name="msg_phantom_on">Phantom Process Guard enabled</string>
     <string name="msg_phantom_off">Restored default Phantom Process settings</string>
     <string name="msg_phantom_fail">Active Shizuku required for Phantom Process Guard: %1$s</string>
@@ -202,7 +320,29 @@
     <string name="msg_thermal_on">Thermal Limit Override enabled (auto-cutoff &gt;43°C)</string>
     <string name="msg_thermal_off">Restored stock thermal throttling</string>
     <string name="msg_thermal_fail">Shizuku required to control thermalservice: %1$s</string>
-    <string name="msg_restore_ok">All parameters restored to HyperOS stock defaults.</string>
+    <string name="msg_freezer_ok">Cached App Freezer updated.</string>
+    <string name="msg_freezer_fail">Shizuku required for Cached App Freezer: %1$s</string>
+    <string name="msg_dns_ok">Private DNS set to: %1$s</string>
+    <string name="msg_dns_fail">Missing permission or Shizuku for Private DNS.</string>
+    <string name="msg_scan_guard_ok">Radio background scan preference updated.</string>
+    <string name="msg_scan_guard_fail">Missing permission or Shizuku for radio scan setting.</string>
+    <string name="msg_pkg_blocked">Blocked: core HyperOS package cannot be modified.</string>
+    <string name="msg_pkg_frozen">Frozen %1$s</string>
+    <string name="msg_pkg_restored">Re-enabled %1$s</string>
+    <string name="msg_pkg_fail">Package action failed: %1$s</string>
+    <string name="msg_safe_pack_done">Frozen %1$d safe China ROM bloat packages.</string>
+    <string name="msg_restore_frozen_done">Re-enabled %1$d app-frozen packages.</string>
+    <string name="msg_bg_restricted">Restricted background execution for %1$s</string>
+    <string name="msg_bg_restored">Restored normal background access for %1$s</string>
+    <string name="msg_bg_fail">Could not change background mode: %1$s</string>
+    <string name="msg_art_one_ok">Compiled %1$s (%2$s)</string>
+    <string name="msg_art_one_fail">Compile failed for %1$s: %2$s</string>
+    <string name="msg_art_batch_done">Compiled %1$d / %2$d apps (%3$s)</string>
+    <string name="msg_art_bg_dexopt_ok">System bg-dexopt-job finished successfully.</string>
+    <string name="msg_art_bg_dexopt_fail">bg-dexopt-job failed: %1$s</string>
+    <string name="msg_trim_cache_ok">System caches trimmed cleanly.</string>
+    <string name="msg_trim_cache_fail">Cache trim failed: %1$s</string>
+    <string name="msg_restore_ok">All parameters and frozen apps restored to HyperOS stock defaults.</string>
     <string name="msg_shizuku_not_ready">Shizuku is not ready or permission not granted.</string>
     <string name="msg_shell_empty">Empty command</string>
     <string name="msg_shell_no_reply">No response</string>
